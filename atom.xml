@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>一粒蛋</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://aceegg.com/"/>
+  <updated>2016-05-29T15:12:07.000Z</updated>
+  <id>http://aceegg.com/</id>
+  
+  <author>
+    <name>aceegg</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>这一年想做的事</title>
+    <link href="http://aceegg.com/2016/02/16/%E8%BF%99%E4%B8%80%E5%B9%B4%E6%83%B3%E5%81%9A%E7%9A%84%E4%BA%8B/"/>
+    <id>http://aceegg.com/2016/02/16/这一年想做的事/</id>
+    <published>2016-02-16T15:52:56.000Z</published>
+    <updated>2016-05-29T15:12:07.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;告别&quot;&gt;&lt;a href=&quot;#告别&quot; class=&quot;headerlink&quot; title=&quot;告别&quot;&gt;&lt;/a&gt;告别&lt;/h3&gt;&lt;p&gt;2015年，一年时间总是足够发生很多难忘的事情。也许生在北方的关系，我更喜欢温暖的地方，从事it工作的话，朝气蓬勃的深圳于是成了我的最佳选择。温暖的南方生活也并没有想象中多么美好，南北的文化差异让我有些许不能适应。年底，因为一些原因我辞职了。辞职后再三考虑，决定告别深圳，去往靠近北方的上海。&lt;/p&gt;
+&lt;h3 id=&quot;魔都&quot;&gt;&lt;a href=&quot;#魔都&quot; class=&quot;headerlink&quot; title=&quot;魔都&quot;&gt;&lt;/a&gt;魔都&lt;/h3&gt;&lt;p&gt;为什么是上海？这个问题几乎每次面试都被问到，但我自己其实也没什么特别重大的理由，可以说仅仅是喜欢就来了。这么说显得比较任性也一定会给面试官留下我这个人飘忽不定的感觉。但其实我觉得每个人做事情的契机不同，动机反倒不一定是驱动的主力。&lt;br&gt;可能是在外面久了，换了城市也并不会给我带来什么感觉，要说有也就是吃饭更贵了、地铁没有深圳新、比深圳大比深圳冷。。。&lt;/p&gt;
+&lt;h3 id=&quot;想做的事&quot;&gt;&lt;a href=&quot;#想做的事&quot; class=&quot;headerlink&quot; title=&quot;想做的事&quot;&gt;&lt;/a&gt;想做的事&lt;/h3&gt;&lt;p&gt;有了新的环境也要为自己立下新的目标。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;完成武无止境。也许该考虑换个名字。这是我一直想完成却没有去实现的魔兽地图。冰封王座记载了我高中的回忆，我想亲自做出一张地图然后继续和我的挚交们愉快的玩耍。游戏设计过于复杂，一直放着没有去认真去做，今年立下的第一个目标就是完成它，因为我怕以后真的没有机会再见到那几个兄弟。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;维护这个博客。说实话，文笔大不如前，手放到键盘上都不知道该敲什么，但我要坚持，坚持去写博客无论是技术博客或者只是唠叨几句，相信文笔方面会慢慢提升。博客的意义不必多说。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;维护开源项目。至少一个吧，将自己的一些东西幻化为代码贡献出来。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;告别&quot;&gt;&lt;a href=&quot;#告别&quot; class=&quot;headerlink&quot; title=&quot;告别&quot;&gt;&lt;/a&gt;告别&lt;/h3&gt;&lt;p&gt;2015年，一年时间总是足够发生很多难忘的事情。也许生在北方的关系，我更喜欢温暖的地方，从事it工作的话，朝气蓬勃的深圳于是成了我的最佳选择
+    
+    </summary>
+    
+      <category term="生活" scheme="http://aceegg.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="心路" scheme="http://aceegg.com/tags/%E5%BF%83%E8%B7%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在项目里运行RxAndroid － 第一天</title>
+    <link href="http://aceegg.com/2015/12/22/rxandroid1/"/>
+    <id>http://aceegg.com/2015/12/22/rxandroid1/</id>
+    <published>2015-12-22T06:12:20.000Z</published>
+    <updated>2016-01-14T14:17:39.000Z</updated>
+    
+    <content type="html">&lt;p&gt;对于近来大热的RxJava，很早以前就有在关注。其优雅的代码格式我相信任何一位程序员见了都会赞不绝口。在网上查阅相关使用资料后终于也是心痒难耐，决定将此优秀编程思想框架应用到自己的项目中，以博客形式记录整个使用过程。&lt;/p&gt;
+&lt;h1 id=&quot;什么是RxJava-RxAndroid&quot;&gt;&lt;a href=&quot;#什么是RxJava-RxAndroid&quot; class=&quot;headerlink&quot; title=&quot;什么是RxJava?RxAndroid?&quot;&gt;&lt;/a&gt;什么是RxJava?RxAndroid?&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h3 id=&quot;先确认下-RxJava-的概念。&quot;&gt;&lt;a href=&quot;#先确认下-RxJava-的概念。&quot; class=&quot;headerlink&quot; title=&quot;先确认下==RxJava==的概念。&quot;&gt;&lt;/a&gt;先确认下==RxJava==的概念。&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;a library for composing asynchronous and event-based programs using observable sequences for the Java VM.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;官方对RxJava的介绍就这一句，翻译过来意思就是一个使用事件机制调解异步的程序，它可以让程序按照可观察的序列在虚拟机上运行。第一次看完都会有一个这是什么鬼的感觉，我翻译的也许不是特别准确，但它的核心思想就是异步和序列。作为程序员，其实代码永远比语言更有效果，读者可以在事例代码中慢慢了解RxJava的强大之处。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;h3 id=&quot;而RxAndroid就很简单，它是基于RxJava的带有生命周期管理，这是为了安卓系统专门打造的库。&quot;&gt;&lt;a href=&quot;#而RxAndroid就很简单，它是基于RxJava的带有生命周期管理，这是为了安卓系统专门打造的库。&quot; class=&quot;headerlink&quot; title=&quot;而RxAndroid就很简单，它是基于RxJava的带有生命周期管理，这是为了安卓系统专门打造的库。&quot;&gt;&lt;/a&gt;而RxAndroid就很简单，它是基于RxJava的带有生命周期管理，这是为了安卓系统专门打造的库。&lt;/h3&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;应用场景&quot;&gt;&lt;a href=&quot;#应用场景&quot; class=&quot;headerlink&quot; title=&quot;应用场景&quot;&gt;&lt;/a&gt;应用场景&lt;/h1&gt;&lt;p&gt;换句话说就是我为什么要用RxJava，他能解决我的什么问题？如果你是只勤奋程序员，学习RxJava是出于对开发知识的热爱那这一段可以忽略了。在实际开发时我遇到了这样一个需求问题，在注册流程中有几个接口需要在同一页面中依次请求，当用户输入完用户名和密码，点击注册按钮后，首先调用注册接口，注册成功时得到返回的用户ID，再依据此ID调用登录接口，登录成功后调用用户信息接口，确认用户信息后调用设置用户登记接口。这四个接口一环套一环必须依次执行。到这里也许你已经明白这种情况下的代码阅读复杂性。&lt;/p&gt;
+&lt;h1 id=&quot;怎么用&quot;&gt;&lt;a href=&quot;#怎么用&quot; class=&quot;headerlink&quot; title=&quot;怎么用&quot;&gt;&lt;/a&gt;怎么用&lt;/h1&gt;&lt;p&gt;RxJava可以轻松帮你优化代码的可读性。上面的情况在RxJava眼里就会变成－－&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;figcaption&gt;&lt;span&gt;示例伪代码&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Observable&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		.register()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		.login()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		.getUserInfo()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		.setUserLevel()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		.jumpToHome();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	(这不是真正的写法！)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;这段伪代码表现的就是RxJava的代码阅读过程，是不是非常清晰。&lt;/p&gt;
+&lt;p&gt;今天就写到这里，明天将进入真正的coding部分。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;对于近来大热的RxJava，很早以前就有在关注。其优雅的代码格式我相信任何一位程序员见了都会赞不绝口。在网上查阅相关使用资料后终于也是心痒难耐，决定将此优秀编程思想框架应用到自己的项目中，以博客形式记录整个使用过程。&lt;/p&gt;
+&lt;h1 id=&quot;什么是RxJava-RxAndr
+    
+    </summary>
+    
+      <category term="Android" scheme="http://aceegg.com/categories/Android/"/>
+    
+    
+      <category term="RxAndroid" scheme="http://aceegg.com/tags/RxAndroid/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在项目里运行RxAndroid － 第二天</title>
+    <link href="http://aceegg.com/2015/12/22/rxandroid2/"/>
+    <id>http://aceegg.com/2015/12/22/rxandroid2/</id>
+    <published>2015-12-22T06:12:20.000Z</published>
+    <updated>2016-01-16T14:56:42.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;引用方法&quot;&gt;&lt;a href=&quot;#引用方法&quot; class=&quot;headerlink&quot; title=&quot;引用方法&quot;&gt;&lt;/a&gt;引用方法&lt;/h1&gt;&lt;p&gt;在你的app下的gradle里添加如下引用&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;compile &lt;span class=&quot;string&quot;&gt;&#39;io.reactivex:rxandroid:1.1.0&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// Because RxAndroid releases are few and far between, it is recommended you also&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// explicitly depend on RxJava&#39;s latest version for bug fixes and new features.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;compile &lt;span class=&quot;string&quot;&gt;&#39;io.reactivex:rxjava:1.1.0&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;我的项目使用&lt;a href=&quot;https://github.com/square/retrofit&quot; title=&quot;Retrofit2.0 beta3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Retrofit&lt;/a&gt;作为网络框架，所以还需要引入&lt;a href=&quot;https://github.com/square/retrofit&quot; title=&quot;Retrofit2.0 beta3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Retrofit&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;compile &lt;span class=&quot;string&quot;&gt;&#39;com.squareup.retrofit2:retrofit:2.0.0-beta3&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/square/retrofit&quot; title=&quot;Retrofit2.0 beta3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Retrofit&lt;/a&gt;提供了与RxJava无缝衔接的接口，所以笔者非常庆幸当初选择了它作为网络基础框架。关于retrofit的使用这里就不细说了，以后有机会希望我也能补上一篇自己的使用心得。&lt;/p&gt;
+&lt;h1 id=&quot;接口的写法&quot;&gt;&lt;a href=&quot;#接口的写法&quot; class=&quot;headerlink&quot; title=&quot;接口的写法&quot;&gt;&lt;/a&gt;接口的写法&lt;/h1&gt;&lt;p&gt;在retrofit2.0当中接口方法有了返回值，想使用RxJava仅仅修改返回值为Observable就可以。&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@FormUrlEncoded&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@POST&lt;/span&gt;(API_PHP_APP_API) &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Observable&amp;lt;Result&amp;lt;User&amp;gt;&amp;gt; login(&lt;span class=&quot;meta&quot;&gt;@FieldMap&lt;/span&gt; Map&amp;lt;String, Object&amp;gt; params);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;如此就完成了接口的改造。实际使用时代码的书写规则就发生了神奇变化！&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;UserRequest.loginCall(&lt;span class=&quot;string&quot;&gt;&quot;username&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;password&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .subscribeOn(Schedulers.io())  &lt;span class=&quot;comment&quot;&gt;// 使用io线程处理请求&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .observeOn(AndroidSchedulers.mainThread()) &lt;span class=&quot;comment&quot;&gt;// 使用主线程处理下面的结果&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .subscribe(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Observer&amp;lt;Result&amp;lt;User&amp;gt;&amp;gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onCompleted&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onError&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Throwable e)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;// 登录失败&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onNext&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Result&amp;lt;User&amp;gt; userResult)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;// 服务器返回登录成功,你可以直接操作返回的json数据已经转化完成的user对象&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;// 例如显示登陆的用户名tvUname.setText(user.username)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h1 id=&quot;多个异步请求顺序完成&quot;&gt;&lt;a href=&quot;#多个异步请求顺序完成&quot; class=&quot;headerlink&quot; title=&quot;多个异步请求顺序完成&quot;&gt;&lt;/a&gt;多个异步请求顺序完成&lt;/h1&gt;&lt;p&gt;上面的例子只是单一的请求处理，实际上你用okhttp的call代码会更简洁。我的项目里遇到的问题是有多个请求必须按顺序依次执行。只需要在上面的代码基础上稍微做点修改。&lt;/p&gt;
+&lt;h2 id=&quot;操作符-map和flatMap&quot;&gt;&lt;a href=&quot;#操作符-map和flatMap&quot; class=&quot;headerlink&quot; title=&quot;操作符 map和flatMap&quot;&gt;&lt;/a&gt;操作符 map和flatMap&lt;/h2&gt;&lt;p&gt;map可不是数据结构那个map，也不是地图！map是RxJava的操作符之一，他的作用是接收上一个observer的数据并生产一个新的observer传递下去。有点像吃掉了一棵树的苹果，然后用种子种出另外一棵树给下一个人吃，当然他的生长速度是一瞬间。&lt;/p&gt;
+&lt;h2 id=&quot;添加操作符&quot;&gt;&lt;a href=&quot;#添加操作符&quot; class=&quot;headerlink&quot; title=&quot;添加操作符&quot;&gt;&lt;/a&gt;添加操作符&lt;/h2&gt;&lt;p&gt;既然是承接上一个的结果，所以写在后面&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;UserRequest.registCall(phone, varify, password, invite)&lt;span class=&quot;comment&quot;&gt;//注册&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .observeOn(Schedulers.io())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .flatMap(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Func1&amp;lt;Result&amp;lt;User&amp;gt;, Observable&amp;lt;Result&amp;lt;User&amp;gt;&amp;gt;&amp;gt;() &amp;#123;&lt;span class=&quot;comment&quot;&gt;//登陆&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; Observable&amp;lt;Result&amp;lt;User&amp;gt;&amp;gt; call(Result&amp;lt;User&amp;gt; userResult) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; UserRequest.loginCall(phone, password);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ...&lt;span class=&quot;comment&quot;&gt;// 按需要加任意个操作符&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .flatMap(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Func1&amp;lt;Observable&amp;lt;User&amp;gt;, Observable&amp;lt;Result&amp;gt;&amp;gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; Observable&amp;lt;Result&amp;gt; &lt;span class=&quot;title&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Observable&amp;lt;User&amp;gt; userObservable)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; UserRequest.setLevelCall(&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .subscribeOn(Schedulers.io())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .observeOn(AndroidSchedulers.mainThread())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        .subscribe(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Observer&amp;lt;Result&amp;gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onCompleted&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onError&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Throwable e)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          	&lt;span class=&quot;comment&quot;&gt;// 错误处理，中间有一个请求出现错误都会终止&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onNext&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Result result)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;// 成功&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;稍加处理后整个代码的思维清晰度将是一目了然。这里就不再献丑了。&lt;/p&gt;
+&lt;h1 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h1&gt;&lt;p&gt;到这里就完成了RxJava的引入体验。现在只是这里一处有这样的需求，如果长时间使用米发现大问题就打算大规模的优化改造。写这个文章一方面记录下自己的心得，一方面也希望能帮助想快速入门又不想阅读长篇大论的朋友。我自己也很讨厌啰嗦的文字，身为程序员其实最好的交流语言就是代码。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;引用方法&quot;&gt;&lt;a href=&quot;#引用方法&quot; class=&quot;headerlink&quot; title=&quot;引用方法&quot;&gt;&lt;/a&gt;引用方法&lt;/h1&gt;&lt;p&gt;在你的app下的gradle里添加如下引用&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table
+    
+    </summary>
+    
+      <category term="Android" scheme="http://aceegg.com/categories/Android/"/>
+    
+    
+      <category term="RxAndroid" scheme="http://aceegg.com/tags/RxAndroid/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>第一篇</title>
+    <link href="http://aceegg.com/2015/12/21/first/"/>
+    <id>http://aceegg.com/2015/12/21/first/</id>
+    <published>2015-12-21T07:44:58.000Z</published>
+    <updated>2015-12-21T21:21:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;经过一番折腾，博客算是正式开张了。现在也没什么东西可以写，以后想抒发情感的时候再考虑吧，当然自己也希望积攒一些技术文章。&lt;/p&gt;
+&lt;h2 id=&quot;预祝大家新年发大财！&quot;&gt;&lt;a href=&quot;#预祝大家新年发大财！&quot; class=&quot;headerlink&quot; title=&quot;预祝大家新年发大财！&quot;&gt;&lt;/a&gt;预祝大家新年发大财！&lt;/h2&gt;&lt;p&gt; 木有红包！&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;说起来现在的红包的文化也算是中国特色了。甚至演化为变相赌博。谨记真理－－不要贪小便宜！&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;经过一番折腾，博客算是正式开张了。现在也没什么东西可以写，以后想抒发情感的时候再考虑吧，当然自己也希望积攒一些技术文章。&lt;/p&gt;
+&lt;h2 id=&quot;预祝大家新年发大财！&quot;&gt;&lt;a href=&quot;#预祝大家新年发大财！&quot; class=&quot;headerlink&quot; title=&quot;预祝大家
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="http://aceegg.com/tags/Hexo/"/>
+    
+  </entry>
+  
+</feed>
