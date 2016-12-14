@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Android命令行签名方式 · 一粒蛋</title><meta name="description" content="Android命令行签名方式 - aceegg"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://aceegg.com/atom.xml" title="一粒蛋"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/imcloud" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Android命令行签名方式</h1><div class="post-info">2016年12月13日</div><div class="post-content"><h3 id="使用jarsigner签名"><a href="#使用jarsigner签名" class="headerlink" title="使用jarsigner签名"></a>使用jarsigner签名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">jarsigner -verbose -keystore  my.keystore -signedjar demo_signed.apk demo.apk  alias_name</div></pre></td></tr></table></figure>
+<p>使用jarsigner的基本方式就是这样。需要配置环境变量才可以在任意位置使用此命令行，配置方式这里就不多说，请自行搜索。</p>
+<p><em>参数说明</em></p>
+<ul>
+<li><code>-verbose</code>表示输出一些日志</li>
+<li><code>-keystore</code> 使用keysotre,所以后面紧跟的是keysotre文件的路径</li>
+<li><code>-signedjar</code> 签名jar文件</li>
+<li><code>demo_signed.apk</code> 签名之后生成的文件名字，可以随意起。</li>
+<li><code>demo.apk</code> 未签名的文件</li>
+<li><code>alias_name</code> 要使用的锁。一个钥匙库里可能有多个锁。</li>
+</ul>
+<p>执行后，如果一切正常就会在执行这个命令的目录下生成一个名为demo_signed.apk的文件。</p>
+<h3 id="使用apksigner签名"><a href="#使用apksigner签名" class="headerlink" title="使用apksigner签名"></a>使用apksigner签名</h3><p><a href="https://developer.android.com/studio/publish/app-signing.html" target="_blank" rel="external">关于apk签名的官方教程</a><br>需要翻墙，教程是中文的。官方写的已经很通俗易懂了，这里就补充一下各个参数的解释。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apksigner sign --ks my-release-key.jks my-app.apk</div></pre></td></tr></table></figure></p>
+<p>apksigner在sdk/buildtools/（数字文件夹）/下，是一个命令行文件，类似adb、jarsigner等，如果没有就更新到最新（本博文编辑时）的25.0.1，因为这里经常更新所以这次直接拖拽apksigner文件到终端里使用,不要配环境变量了。</p>
+<p><em>参数说明</em></p>
+<ul>
+<li><code>sign</code> 要执行签名动作。一会签名后可使用verify检验签名后的文件</li>
+<li><code>--ks</code> 通常都是使用AndroidStudio生成的jks文件签名使用这个参数就行，后面跟上库文件路径</li>
+<li><code>my-app.apk</code> 就是未签名的apk，执行上面的命令后会被覆盖为已经签名的apk，如果想把签名后的apk另存为其他名字的文件要使用参数<code>--out &lt;filename&gt;</code></li>
+</ul>
+<p>执行上面的命令时作者遇到一个异常，原因是未能提供库里面一个key的密码，执行时只会提示输入库的密码。改为如下就可以：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apksigner sign --ks my-release-key.jks --key-pass pass:输入你的key密码 my-app.apk</div></pre></td></tr></table></figure></p>
+<p>这样就会为默认的key指定密码。如果你有多个key可以用–ks-key-alias <alias_name>指定你的key。</alias_name></p>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上是两种签名方式，目前不清楚apksigner跟jarsigner的区别，我猜测apksigner是全局签名，也就是新版AndroidStudio在build apk时提示的full sign</p>
+<p>不了解参数的意义时着实会让人头痛，会遇到很多坑。希望可以给阅读的人带来帮助。</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/12/14/利用gradle自动切换API host/" class="prev">PREV</a><a href="/2016/05/30/几经波折，博客重生/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://aceegg.com">aceegg</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>

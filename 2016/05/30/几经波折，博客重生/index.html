@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 几经波折，博客重生 · 一粒蛋</title><meta name="description" content="几经波折，博客重生 - aceegg"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://aceegg.com/atom.xml" title="一粒蛋"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/imcloud" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">几经波折，博客重生</h1><div class="post-info">2016年5月30日</div><div class="post-content"><p>本来只是想换个主题，不知道为何hexo突然抽风，各种错误抛出。</p>
+<figure class="highlight java"><figcaption><span>hexo错误</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">not find modul *******</div></pre></td></tr></table></figure>
+<p>大概就是类似这种东西。本来觉得无视错误提示可以正常生产静态网页无所谓，然而我还是太年轻，不能deploy到Github上了。不得已按照搜索到的方法,用如下命令重新安装了一次hexo</p>
+<blockquote>
+<p>$ npm install hexo –no-optional</p>
+</blockquote>
+<p>如此错误提示的确是没有了，还没有到万事大吉的时刻，博客也要重新配置。</p>
+<ol>
+<li>在原博客目录下执行命令<em>hexo init</em>，不用担心原博客内容会丢失，原md文件和主题都会保留</li>
+<li>接着打开配置文件，做相应的配置更改，建议自行参考<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="external">官网配置说明</a>，网上大部分的文章都是过时的。</li>
+<li>配置好以后就可以执行<em>hexo g</em>生产静态网页。</li>
+<li>网页很快会生成，如果有错误请检查自己的配置文件，配置文件对格式要求严格, <code>缩进</code>、<code>大小写</code>、<code>拼写</code>、以及参数位置（我竟然把语言选项写在了日期选项里😓）等都要仔细检查。</li>
+<li>下一步就是选择一个你自己喜欢的主题，下载安装，这里不多说了，官网提供了很多主题，主题作者都非常有爱心，安装步骤一般都很详细。我要提醒的是，主题需要插件支持，在安装插件时不要忘记git插件</li>
+</ol>
+<blockquote>
+<p>$ npm install hexo-deployer-git –save</p>
+</blockquote>
+<ol>
+<li>一切就绪了执行命令<em>hexo s</em> 在浏览器打<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>预览下</li>
+<li>预览OK了，输入<em>hexo set_deployer</em>（传到Github的需要前面说的git插件支持，其他请看<a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">官网说明</a>）</li>
+<li>发布能否成功就取决于你在Github和本地的ssh配置</li>
+</ol>
+<h3 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h3><p>弄好以后成就感满满。果然是太长时间没维护博客的报应吧😂😂😂</p>
+<p>写的比较粗陋，但我也没打算把这篇扩充成一个hexo安装使用教程，网上真的是够多了。但看来看去，就我自身的感受来讲毫无参考价值，最终帮助我的是官方文档，那些教程要么是非常古老的，要么就是一篇翻译。对于新手可能遇到的问题完全没有应对提示。</p>
+<p>我的这篇博客主要还是作为解决问题的一次记录，希望能对看到的朋友有帮助。</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/12/13/apk命令行签名方式/" class="prev">PREV</a><a href="/2016/02/16/这一年想做的事/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://aceegg.com">aceegg</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
