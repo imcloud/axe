@@ -1,4 +1,89 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 利用gradle自动切换API host · 一粒蛋</title><meta name="description" content="利用gradle自动切换API host - aceegg"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://aceegg.com/atom.xml" title="一粒蛋"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/imcloud" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">利用gradle自动切换API host</h1><div class="post-info">2016年12月14日</div><div class="post-content"><p>公司建立了多个服务器区分测试环境和生产环境，每次发版时如果稍不注意就会用错host，甚至可能造成发布到线上的却使用了测试环境host的大错。利用gradle可以帮助我们自动化切换host。 网上大部分教程都是在app目录下直接添加BuildConfig的字段来实现，因为我把网络层抽离出来成一个单独的module，相对于稍微复杂一点，以此博文记录一下过程。</p>
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>利用gradle自动切换API host | 一粒蛋</title>
+
+  
+  <meta name="author" content="aceegg">
+  
+
+  
+  <meta name="description" content="公司建立了多个服务器区分测试环境和生产环境，每次发版时如果稍不注意就会用错host，甚至可能造成发布到线上的却使用了测试环境host的大错。利用gradle可以帮助我们自动化切换host。 网上大部分教程都是在app目录下直接添加BuildConfig的字段来实现，因为我把网络层抽离出来成一个单独的">
+  
+
+  
+  
+  <meta name="keywords" content="gradle">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="利用gradle自动切换API host"/>
+
+  <meta property="og:site_name" content="一粒蛋"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="一粒蛋" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">一粒蛋</a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>利用gradle自动切换API host</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/12/14/利用gradle自动切换API host/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-12-14T06:56:12.000Z">
+          2016-12-14
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>公司建立了多个服务器区分测试环境和生产环境，每次发版时如果稍不注意就会用错host，甚至可能造成发布到线上的却使用了测试环境host的大错。利用gradle可以帮助我们自动化切换host。 网上大部分教程都是在app目录下直接添加BuildConfig的字段来实现，因为我把网络层抽离出来成一个单独的module，相对于稍微复杂一点，以此博文记录一下过程。</p>
 <h3 id="在module中建立多个flavor"><a href="#在module中建立多个flavor" class="headerlink" title="在module中建立多个flavor"></a>在module中建立多个flavor</h3><p>在目标module的目录下找到build.gradle打开</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">android&#123;</div><div class="line">  <span class="comment">// 设置默认的flavor 一个flavor分debug和release,这里随意挑一个即可 因为我要用到的buildConfigField不需要区分</span></div><div class="line">  defaultPublishConfig <span class="string">"my_testDebug"</span></div><div class="line">  <span class="comment">// 具体作用不明，但是不设置会报错</span></div><div class="line">  publishNonDefault <span class="literal">true</span></div><div class="line">  <span class="comment">// 建立多个flavor</span></div><div class="line">  productFlavors&#123;</div><div class="line">    my_test &#123;</div><div class="line">      buildConfigField <span class="string">"boolean"</span>, <span class="string">"API_HOST"</span>, <span class="string">"true"</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    my_release &#123;</div><div class="line">      buildConfigField <span class="string">"boolean"</span>, <span class="string">"API_HOST"</span>, <span class="string">"false"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure>
 <p>这样就完成了在module目录中建立多个flavor的工作，接下来只需要在打包时使用对应的flavor即可。</p>
@@ -8,4 +93,54 @@
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
 <p>结果总是很简单，但过程中要查询多方资料。官网总是写的很简陋，很多实用的功能并没有给出使用方式，一定要科学上网啊！</p>
 </blockquote>
-</div></article></div></section><footer><div class="paginator"><a href="/2016/12/13/apk命令行签名方式/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://aceegg.com">aceegg</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/Android/">Android</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/gradle/">gradle</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 aceegg
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>
