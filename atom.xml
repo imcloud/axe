@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aceegg.com/"/>
-  <updated>2016-12-14T07:19:50.000Z</updated>
+  <updated>2017-11-28T02:56:29.486Z</updated>
   <id>http://aceegg.com/</id>
   
   <author>
@@ -16,13 +16,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>只有少数人可以看得到的世界</title>
+    <link href="http://aceegg.com/2017/11/28/%E5%8F%AA%E6%9C%89%E5%B0%91%E6%95%B0%E4%BA%BA%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%BE%97%E5%88%B0%E7%9A%84%E4%B8%96%E7%95%8C/"/>
+    <id>http://aceegg.com/2017/11/28/只有少数人可以看得到的世界/</id>
+    <published>2017-11-28T02:45:42.000Z</published>
+    <updated>2017-11-28T02:56:29.486Z</updated>
+    
+    <content type="html"><![CDATA[<p>其实这个博客是有评论功能的…<br><a id="more"></a></p>
+<p>在国内当一个安卓工程师其实是一件非常不容易的事情，非常不容易。<br>你所从事的核心技术来自于一个异次元，如果你不懂得突破次元壁，你只能去咀嚼别人咀嚼之后吐出来的毫无新鲜营养的东西。<br>甚至于，有时候，能不能突破次元壁成为了判断一个安卓工程师技术水平等级的标准。</p>
+<p>谷歌，我个人是非常喜欢的一家公司。</p>
+<p>我总是非常理想主义。如果有一天整个地球再也没有国家之分，没有政府的明争暗斗，没有种族的歧视，整个人类团结一起，只为了更美好的世界一起奋斗，所有顶尖的科学家、技术人员携手合作，所有资源可以共享、所有技术毫无保留的分享，我相信那个时候，人类的发展会得到核弹般的爆炸速度。</p>
+<p>终究不过是理想罢了。</p>
+<p>面对现实，我们获取技术的成本比iOS开发者要高很多。</p>
+<p>这不是抱怨，这是感慨，人类的那点利益之争啊，要持续到什么时候。。。。</p>
+<p>这个博客是有评论功能的，只不过是提供给已经突破次元壁的人的。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;其实这个博客是有评论功能的…&lt;br&gt;
+    
+    </summary>
+    
+      <category term="生活" scheme="http://aceegg.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="闲聊" scheme="http://aceegg.com/tags/%E9%97%B2%E8%81%8A/"/>
+    
+  </entry>
+  
+  <entry>
     <title>利用gradle自动切换API host</title>
     <link href="http://aceegg.com/2016/12/14/%E5%88%A9%E7%94%A8gradle%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2API%20host/"/>
     <id>http://aceegg.com/2016/12/14/利用gradle自动切换API host/</id>
     <published>2016-12-14T06:56:12.000Z</published>
-    <updated>2016-12-14T07:19:50.000Z</updated>
+    <updated>2017-11-28T02:37:52.122Z</updated>
     
-    <content type="html"><![CDATA[<p>公司建立了多个服务器区分测试环境和生产环境，每次发版时如果稍不注意就会用错host，甚至可能造成发布到线上的却使用了测试环境host的大错。利用gradle可以帮助我们自动化切换host。 网上大部分教程都是在app目录下直接添加BuildConfig的字段来实现，因为我把网络层抽离出来成一个单独的module，相对于稍微复杂一点，以此博文记录一下过程。</p>
+    <content type="html"><![CDATA[<p>公司建立了多个服务器区分测试环境和生产环境，每次发版时如果稍不注意就会用错host，甚至可能造成发布到线上的却使用了测试环境host的大错。利用gradle可以帮助我们自动化切换host。 网上大部分教程都是在app目录下直接添加BuildConfig的字段来实现，因为我把网络层抽离出来成一个单独的module，相对于稍微复杂一点，以此博文记录一下过程。<br><a id="more"></a></p>
 <h3 id="在module中建立多个flavor"><a href="#在module中建立多个flavor" class="headerlink" title="在module中建立多个flavor"></a>在module中建立多个flavor</h3><p>在目标module的目录下找到build.gradle打开</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">android&#123;</div><div class="line">  <span class="comment">// 设置默认的flavor 一个flavor分debug和release,这里随意挑一个即可 因为我要用到的buildConfigField不需要区分</span></div><div class="line">  defaultPublishConfig <span class="string">"my_testDebug"</span></div><div class="line">  <span class="comment">// 具体作用不明，但是不设置会报错</span></div><div class="line">  publishNonDefault <span class="literal">true</span></div><div class="line">  <span class="comment">// 建立多个flavor</span></div><div class="line">  productFlavors&#123;</div><div class="line">    my_test &#123;</div><div class="line">      buildConfigField <span class="string">"boolean"</span>, <span class="string">"API_HOST"</span>, <span class="string">"true"</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    my_release &#123;</div><div class="line">      buildConfigField <span class="string">"boolean"</span>, <span class="string">"API_HOST"</span>, <span class="string">"false"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure>
 <p>这样就完成了在module目录中建立多个flavor的工作，接下来只需要在打包时使用对应的flavor即可。</p>
@@ -36,7 +66,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;公司建立了多个服务器区分测试环境和生产环境，每次发版时如果稍不注意就会用错host，甚至可能造成发布到线上的却使用了测试环境host的大错。利用gradle可以帮助我们自动化切换host。 网上大部分教程都是在app目录下直接添加BuildConfig的字段来实现，因为我把
+      &lt;p&gt;公司建立了多个服务器区分测试环境和生产环境，每次发版时如果稍不注意就会用错host，甚至可能造成发布到线上的却使用了测试环境host的大错。利用gradle可以帮助我们自动化切换host。 网上大部分教程都是在app目录下直接添加BuildConfig的字段来实现，因为我把网络层抽离出来成一个单独的module，相对于稍微复杂一点，以此博文记录一下过程。&lt;br&gt;
     
     </summary>
     
@@ -52,9 +82,10 @@
     <link href="http://aceegg.com/2016/12/13/apk%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AD%BE%E5%90%8D%E6%96%B9%E5%BC%8F/"/>
     <id>http://aceegg.com/2016/12/13/apk命令行签名方式/</id>
     <published>2016-12-13T05:08:20.000Z</published>
-    <updated>2016-12-13T05:12:57.000Z</updated>
+    <updated>2017-11-28T02:39:20.897Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="使用jarsigner签名"><a href="#使用jarsigner签名" class="headerlink" title="使用jarsigner签名"></a>使用jarsigner签名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">jarsigner -verbose -keystore  my.keystore -signedjar demo_signed.apk demo.apk  alias_name</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<p>在打包到某些渠道的时候会要求手动签名加固后的包<br><a id="more"></a></p>
+<h3 id="使用jarsigner签名"><a href="#使用jarsigner签名" class="headerlink" title="使用jarsigner签名"></a>使用jarsigner签名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">jarsigner -verbose -keystore  my.keystore -signedjar demo_signed.apk demo.apk  alias_name</div></pre></td></tr></table></figure>
 <p>使用jarsigner的基本方式就是这样。需要配置环境变量才可以在任意位置使用此命令行，配置方式这里就不多说，请自行搜索。</p>
 <p><em>参数说明</em></p>
 <ul>
@@ -83,7 +114,7 @@
     
     <summary type="html">
     
-      &lt;h3 id=&quot;使用jarsigner签名&quot;&gt;&lt;a href=&quot;#使用jarsigner签名&quot; class=&quot;headerlink&quot; title=&quot;使用jarsigner签名&quot;&gt;&lt;/a&gt;使用jarsigner签名&lt;/h3&gt;&lt;figure class=&quot;highlight plai
+      &lt;p&gt;在打包到某些渠道的时候会要求手动签名加固后的包&lt;br&gt;
     
     </summary>
     
@@ -99,9 +130,9 @@
     <link href="http://aceegg.com/2016/05/30/%E5%87%A0%E7%BB%8F%E6%B3%A2%E6%8A%98%EF%BC%8C%E5%8D%9A%E5%AE%A2%E9%87%8D%E7%94%9F/"/>
     <id>http://aceegg.com/2016/05/30/几经波折，博客重生/</id>
     <published>2016-05-29T21:07:55.000Z</published>
-    <updated>2016-05-29T22:06:24.000Z</updated>
+    <updated>2017-11-28T02:38:03.557Z</updated>
     
-    <content type="html"><![CDATA[<p>本来只是想换个主题，不知道为何hexo突然抽风，各种错误抛出。</p>
+    <content type="html"><![CDATA[<p>本来只是想换个主题，不知道为何hexo突然抽风，各种错误抛出。<br><a id="more"></a></p>
 <figure class="highlight java"><figcaption><span>hexo错误</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">not find modul *******</div></pre></td></tr></table></figure>
 <p>大概就是类似这种东西。本来觉得无视错误提示可以正常生产静态网页无所谓，然而我还是太年轻，不能deploy到Github上了。不得已按照搜索到的方法,用如下命令重新安装了一次hexo</p>
 <blockquote>
@@ -130,8 +161,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;本来只是想换个主题，不知道为何hexo突然抽风，各种错误抛出。&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;figcaption&gt;&lt;span&gt;hexo错误&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutt
+      &lt;p&gt;本来只是想换个主题，不知道为何hexo突然抽风，各种错误抛出。&lt;br&gt;
     
     </summary>
     
@@ -147,9 +177,10 @@
     <link href="http://aceegg.com/2016/02/16/%E8%BF%99%E4%B8%80%E5%B9%B4%E6%83%B3%E5%81%9A%E7%9A%84%E4%BA%8B/"/>
     <id>http://aceegg.com/2016/02/16/这一年想做的事/</id>
     <published>2016-02-16T15:52:56.000Z</published>
-    <updated>2016-05-29T15:12:07.000Z</updated>
+    <updated>2017-11-28T02:36:55.861Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="告别"><a href="#告别" class="headerlink" title="告别"></a>告别</h3><p>2015年，一年时间总是足够发生很多难忘的事情。也许生在北方的关系，我更喜欢温暖的地方，从事it工作的话，朝气蓬勃的深圳于是成了我的最佳选择。温暖的南方生活也并没有想象中多么美好，南北的文化差异让我有些许不能适应。年底，因为一些原因我辞职了。辞职后再三考虑，决定告别深圳，去往靠近北方的上海。</p>
+    <content type="html"><![CDATA[<p>想做，然而，最终还是没有做到很多<br><a id="more"></a></p>
+<h3 id="告别"><a href="#告别" class="headerlink" title="告别"></a>告别</h3><p>2015年，一年时间总是足够发生很多难忘的事情。也许生在北方的关系，我更喜欢温暖的地方，从事it工作的话，朝气蓬勃的深圳于是成了我的最佳选择。温暖的南方生活也并没有想象中多么美好，南北的文化差异让我有些许不能适应。年底，因为一些原因我辞职了。辞职后再三考虑，决定告别深圳，去往靠近北方的上海。</p>
 <h3 id="魔都"><a href="#魔都" class="headerlink" title="魔都"></a>魔都</h3><p>为什么是上海？这个问题几乎每次面试都被问到，但我自己其实也没什么特别重大的理由，可以说仅仅是喜欢就来了。这么说显得比较任性也一定会给面试官留下我这个人飘忽不定的感觉。但其实我觉得每个人做事情的契机不同，动机反倒不一定是驱动的主力。<br>可能是在外面久了，换了城市也并不会给我带来什么感觉，要说有也就是吃饭更贵了、地铁没有深圳新、比深圳大比深圳冷。。。</p>
 <h3 id="想做的事"><a href="#想做的事" class="headerlink" title="想做的事"></a>想做的事</h3><p>有了新的环境也要为自己立下新的目标。</p>
 <ol>
@@ -164,7 +195,7 @@
     
     <summary type="html">
     
-      &lt;h3 id=&quot;告别&quot;&gt;&lt;a href=&quot;#告别&quot; class=&quot;headerlink&quot; title=&quot;告别&quot;&gt;&lt;/a&gt;告别&lt;/h3&gt;&lt;p&gt;2015年，一年时间总是足够发生很多难忘的事情。也许生在北方的关系，我更喜欢温暖的地方，从事it工作的话，朝气蓬勃的深圳于是成了我的最佳选择
+      &lt;p&gt;想做，然而，最终还是没有做到很多&lt;br&gt;
     
     </summary>
     
@@ -180,9 +211,9 @@
     <link href="http://aceegg.com/2015/12/22/rxandroid1/"/>
     <id>http://aceegg.com/2015/12/22/rxandroid1/</id>
     <published>2015-12-22T06:12:20.000Z</published>
-    <updated>2016-01-14T14:17:39.000Z</updated>
+    <updated>2017-11-28T02:38:32.530Z</updated>
     
-    <content type="html"><![CDATA[<p>对于近来大热的RxJava，很早以前就有在关注。其优雅的代码格式我相信任何一位程序员见了都会赞不绝口。在网上查阅相关使用资料后终于也是心痒难耐，决定将此优秀编程思想框架应用到自己的项目中，以博客形式记录整个使用过程。</p>
+    <content type="html"><![CDATA[<p>对于近来大热的RxJava，很早以前就有在关注。其优雅的代码格式我相信任何一位程序员见了都会赞不绝口。在网上查阅相关使用资料后终于也是心痒难耐，决定将此优秀编程思想框架应用到自己的项目中，以博客形式记录整个使用过程。<br><a id="more"></a></p>
 <h1 id="什么是RxJava-RxAndroid"><a href="#什么是RxJava-RxAndroid" class="headerlink" title="什么是RxJava?RxAndroid?"></a>什么是RxJava?RxAndroid?</h1><ul>
 <li><h3 id="先确认下-RxJava-的概念。"><a href="#先确认下-RxJava-的概念。" class="headerlink" title="先确认下==RxJava==的概念。"></a>先确认下==RxJava==的概念。</h3><blockquote>
 <p>a library for composing asynchronous and event-based programs using observable sequences for the Java VM.</p>
@@ -200,8 +231,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;对于近来大热的RxJava，很早以前就有在关注。其优雅的代码格式我相信任何一位程序员见了都会赞不绝口。在网上查阅相关使用资料后终于也是心痒难耐，决定将此优秀编程思想框架应用到自己的项目中，以博客形式记录整个使用过程。&lt;/p&gt;
-&lt;h1 id=&quot;什么是RxJava-RxAndr
+      &lt;p&gt;对于近来大热的RxJava，很早以前就有在关注。其优雅的代码格式我相信任何一位程序员见了都会赞不绝口。在网上查阅相关使用资料后终于也是心痒难耐，决定将此优秀编程思想框架应用到自己的项目中，以博客形式记录整个使用过程。&lt;br&gt;
     
     </summary>
     
@@ -217,9 +247,10 @@
     <link href="http://aceegg.com/2015/12/22/rxandroid2/"/>
     <id>http://aceegg.com/2015/12/22/rxandroid2/</id>
     <published>2015-12-22T06:12:20.000Z</published>
-    <updated>2016-01-16T14:56:42.000Z</updated>
+    <updated>2017-11-28T02:38:22.033Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="引用方法"><a href="#引用方法" class="headerlink" title="引用方法"></a>引用方法</h1><p>在你的app下的gradle里添加如下引用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'io.reactivex:rxandroid:1.1.0'</span></div><div class="line"><span class="comment">// Because RxAndroid releases are few and far between, it is recommended you also</span></div><div class="line"><span class="comment">// explicitly depend on RxJava's latest version for bug fixes and new features.</span></div><div class="line">compile <span class="string">'io.reactivex:rxjava:1.1.0'</span></div></pre></td></tr></table></figure></p>
+    <content type="html"><![CDATA[<p>继续我的rx之路<br><a id="more"></a></p>
+<h1 id="引用方法"><a href="#引用方法" class="headerlink" title="引用方法"></a>引用方法</h1><p>在你的app下的gradle里添加如下引用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'io.reactivex:rxandroid:1.1.0'</span></div><div class="line"><span class="comment">// Because RxAndroid releases are few and far between, it is recommended you also</span></div><div class="line"><span class="comment">// explicitly depend on RxJava's latest version for bug fixes and new features.</span></div><div class="line">compile <span class="string">'io.reactivex:rxjava:1.1.0'</span></div></pre></td></tr></table></figure></p>
 <p>我的项目使用<a href="https://github.com/square/retrofit" title="Retrofit2.0 beta3" target="_blank" rel="external">Retrofit</a>作为网络框架，所以还需要引入<a href="https://github.com/square/retrofit" title="Retrofit2.0 beta3" target="_blank" rel="external">Retrofit</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'com.squareup.retrofit2:retrofit:2.0.0-beta3'</span></div></pre></td></tr></table></figure></p>
 <p><a href="https://github.com/square/retrofit" title="Retrofit2.0 beta3" target="_blank" rel="external">Retrofit</a>提供了与RxJava无缝衔接的接口，所以笔者非常庆幸当初选择了它作为网络基础框架。关于retrofit的使用这里就不细说了，以后有机会希望我也能补上一篇自己的使用心得。</p>
 <h1 id="接口的写法"><a href="#接口的写法" class="headerlink" title="接口的写法"></a>接口的写法</h1><p>在retrofit2.0当中接口方法有了返回值，想使用RxJava仅仅修改返回值为Observable就可以。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@FormUrlEncoded</span> </div><div class="line"><span class="meta">@POST</span>(API_PHP_APP_API) </div><div class="line">Observable&lt;Result&lt;User&gt;&gt; login(<span class="meta">@FieldMap</span> Map&lt;String, Object&gt; params);</div></pre></td></tr></table></figure></p>
@@ -233,7 +264,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;引用方法&quot;&gt;&lt;a href=&quot;#引用方法&quot; class=&quot;headerlink&quot; title=&quot;引用方法&quot;&gt;&lt;/a&gt;引用方法&lt;/h1&gt;&lt;p&gt;在你的app下的gradle里添加如下引用&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table
+      &lt;p&gt;继续我的rx之路&lt;br&gt;
     
     </summary>
     
@@ -249,17 +280,16 @@
     <link href="http://aceegg.com/2015/12/21/first/"/>
     <id>http://aceegg.com/2015/12/21/first/</id>
     <published>2015-12-21T07:44:58.000Z</published>
-    <updated>2015-12-21T21:21:04.000Z</updated>
+    <updated>2017-11-28T02:38:40.193Z</updated>
     
-    <content type="html"><![CDATA[<p>经过一番折腾，博客算是正式开张了。现在也没什么东西可以写，以后想抒发情感的时候再考虑吧，当然自己也希望积攒一些技术文章。</p>
+    <content type="html"><![CDATA[<p>经过一番折腾，博客算是正式开张了。现在也没什么东西可以写，以后想抒发情感的时候再考虑吧，当然自己也希望积攒一些技术文章。<br><a id="more"></a></p>
 <h2 id="预祝大家新年发大财！"><a href="#预祝大家新年发大财！" class="headerlink" title="预祝大家新年发大财！"></a>预祝大家新年发大财！</h2><p> 木有红包！</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">说起来现在的红包的文化也算是中国特色了。甚至演化为变相赌博。谨记真理－－不要贪小便宜！</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;经过一番折腾，博客算是正式开张了。现在也没什么东西可以写，以后想抒发情感的时候再考虑吧，当然自己也希望积攒一些技术文章。&lt;/p&gt;
-&lt;h2 id=&quot;预祝大家新年发大财！&quot;&gt;&lt;a href=&quot;#预祝大家新年发大财！&quot; class=&quot;headerlink&quot; title=&quot;预祝大家
+      &lt;p&gt;经过一番折腾，博客算是正式开张了。现在也没什么东西可以写，以后想抒发情感的时候再考虑吧，当然自己也希望积攒一些技术文章。&lt;br&gt;
     
     </summary>
     

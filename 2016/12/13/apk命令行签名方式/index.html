@@ -10,8 +10,7 @@
   
 
   
-  <meta name="description" content="使用jarsigner签名12jarsigner -verbose -keystore  my.keystore -signedjar demo_signed.apk demo.apk  alias_name
-使用jarsigner的基本方式就是这样。需要配置环境变量才可以在任意位置使用此命令行，配">
+  <meta name="description" content="在打包到某些渠道的时候会要求手动签名加固后的包">
   
 
   
@@ -84,7 +83,8 @@
   <div class="article-content">
     <div class="entry">
       
-        <h3 id="使用jarsigner签名"><a href="#使用jarsigner签名" class="headerlink" title="使用jarsigner签名"></a>使用jarsigner签名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">jarsigner -verbose -keystore  my.keystore -signedjar demo_signed.apk demo.apk  alias_name</div></pre></td></tr></table></figure>
+        <p>在打包到某些渠道的时候会要求手动签名加固后的包<br><a id="more"></a></p>
+<h3 id="使用jarsigner签名"><a href="#使用jarsigner签名" class="headerlink" title="使用jarsigner签名"></a>使用jarsigner签名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">jarsigner -verbose -keystore  my.keystore -signedjar demo_signed.apk demo.apk  alias_name</div></pre></td></tr></table></figure>
 <p>使用jarsigner的基本方式就是这样。需要配置环境变量才可以在任意位置使用此命令行，配置方式这里就不多说，请自行搜索。</p>
 <p><em>参数说明</em></p>
 <ul>
@@ -141,6 +141,34 @@
     
   </div>
 </article>
+
+  
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'aceegg-1';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
 
 
     </main>

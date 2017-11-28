@@ -10,7 +10,7 @@
   
 
   
-  <meta name="description" content="引用方法在你的app下的gradle里添加如下引用1234compile &#39;io.reactivex:rxandroid:1.1.0&#39;// Because RxAndroid releases are few and far between, it is recommended you also//">
+  <meta name="description" content="继续我的rx之路">
   
 
   
@@ -83,7 +83,8 @@
   <div class="article-content">
     <div class="entry">
       
-        <h1 id="引用方法"><a href="#引用方法" class="headerlink" title="引用方法"></a>引用方法</h1><p>在你的app下的gradle里添加如下引用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'io.reactivex:rxandroid:1.1.0'</span></div><div class="line"><span class="comment">// Because RxAndroid releases are few and far between, it is recommended you also</span></div><div class="line"><span class="comment">// explicitly depend on RxJava's latest version for bug fixes and new features.</span></div><div class="line">compile <span class="string">'io.reactivex:rxjava:1.1.0'</span></div></pre></td></tr></table></figure></p>
+        <p>继续我的rx之路<br><a id="more"></a></p>
+<h1 id="引用方法"><a href="#引用方法" class="headerlink" title="引用方法"></a>引用方法</h1><p>在你的app下的gradle里添加如下引用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'io.reactivex:rxandroid:1.1.0'</span></div><div class="line"><span class="comment">// Because RxAndroid releases are few and far between, it is recommended you also</span></div><div class="line"><span class="comment">// explicitly depend on RxJava's latest version for bug fixes and new features.</span></div><div class="line">compile <span class="string">'io.reactivex:rxjava:1.1.0'</span></div></pre></td></tr></table></figure></p>
 <p>我的项目使用<a href="https://github.com/square/retrofit" title="Retrofit2.0 beta3" target="_blank" rel="external">Retrofit</a>作为网络框架，所以还需要引入<a href="https://github.com/square/retrofit" title="Retrofit2.0 beta3" target="_blank" rel="external">Retrofit</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'com.squareup.retrofit2:retrofit:2.0.0-beta3'</span></div></pre></td></tr></table></figure></p>
 <p><a href="https://github.com/square/retrofit" title="Retrofit2.0 beta3" target="_blank" rel="external">Retrofit</a>提供了与RxJava无缝衔接的接口，所以笔者非常庆幸当初选择了它作为网络基础框架。关于retrofit的使用这里就不细说了，以后有机会希望我也能补上一篇自己的使用心得。</p>
 <h1 id="接口的写法"><a href="#接口的写法" class="headerlink" title="接口的写法"></a>接口的写法</h1><p>在retrofit2.0当中接口方法有了返回值，想使用RxJava仅仅修改返回值为Observable就可以。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@FormUrlEncoded</span> </div><div class="line"><span class="meta">@POST</span>(API_PHP_APP_API) </div><div class="line">Observable&lt;Result&lt;User&gt;&gt; login(<span class="meta">@FieldMap</span> Map&lt;String, Object&gt; params);</div></pre></td></tr></table></figure></p>
@@ -125,6 +126,34 @@
     
   </div>
 </article>
+
+  
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'aceegg-1';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
 
 
     </main>
