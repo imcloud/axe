@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://aceegg.com/"/>
-  <updated>2017-11-28T02:56:29.486Z</updated>
+  <updated>2017-12-07T05:41:29.094Z</updated>
   <id>http://aceegg.com/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在Linux后台运行jar包</title>
+    <link href="http://aceegg.com/2017/12/07/%E5%9C%A8Linux%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8Cjar%E5%8C%85/"/>
+    <id>http://aceegg.com/2017/12/07/在Linux后台运行jar包/</id>
+    <published>2017-12-07T05:14:41.000Z</published>
+    <updated>2017-12-07T05:41:29.094Z</updated>
+    
+    <content type="html"><![CDATA[<p>当我准备部署一个jar包到阿里云上运行时候遇到的问题。</p>
+<a id="more"></a>
+<p>公司后台框架用的是<strong>Spring boot</strong>之前公司的服务器一直运行在<strong>tomcate</strong>容器中，所以打出来的包都是<code>war</code>包</p>
+<p>最近公司升级架构，采用docker微服务（也是阿里云提供的技术），这样一来就更适合打包成<code>jar</code>运行在docker容器里。</p>
+<h4 id="普通的运行jar包命令"><a href="#普通的运行jar包命令" class="headerlink" title="普通的运行jar包命令"></a>普通的运行jar包命令</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ java -jar xxxx.jar &amp;</div></pre></td></tr></table></figure>
+<p>这个命令有个缺点，当我关闭终端时命令也随之停止。作为后端肯定必须24小时运行下去，我总不能连我电脑一起一直开着。所以要找到一种后台运行<code>jar</code>的方法.</p>
+<h4 id="后台运行jar包命令"><a href="#后台运行jar包命令" class="headerlink" title="后台运行jar包命令"></a>后台运行jar包命令</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup java -jar xxx.jar &amp;</div></pre></td></tr></table></figure>
+<p>多了一个<code>nohup</code>命令，这个命令就可以让jar运行在Linux后台，即使你关闭终端程序不会终止。</p>
+<h4 id="多个jar包可以一起运行"><a href="#多个jar包可以一起运行" class="headerlink" title="多个jar包可以一起运行"></a>多个jar包可以一起运行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup java -jar xxx1.jar &amp; nohup java -jar xxx2.jar &amp; nohup java -jar xxx3.jar &amp;</div></pre></td></tr></table></figure>
+<h4 id="查看后台"><a href="#查看后台" class="headerlink" title="查看后台"></a>查看后台</h4><p>如果你想查看当前后台运行了哪些用这个命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ jobs</div></pre></td></tr></table></figure>
+<p>将会打印出类似下面这样的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[1]   Running                 nohup java -jar 1111.jar &amp;                                                                                                                                                                                         </div><div class="line">[2]-  Running                 nohup java -jar 2222.jar &amp;                                                                                                                                                                                        </div><div class="line">[3]+  Running                 nohup java -jar 3333.jar &amp;</div></pre></td></tr></table></figure>
+<p><code>Running</code>这一列代表程序状态，如果程序有问题，再打一次<code>jobs</code>命令就会看到变成<code>Exiting</code>表示程序停止了，第三次输入<code>jobs</code>就看不到那个程序因为已经终止退出后台。</p>
+<p><code>+</code>和<code>-</code>符号代表第一个和最后一个运行的后台程序。</p>
+<p>其他相关信息我就不多说了，网上资料很多，这里只再举例不打印日志的方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup java -jar xxx1.jar &gt;/dev/<span class="keyword">null</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</div></pre></td></tr></table></figure></p>
+<p><code>nohup</code>默认会输出日志到nohup.out，用<code>&gt;</code>命令可以重新指定输出文件，这里指定了Linux黑洞，效果等同于没有输出日志。<code>2&gt;&amp;1</code>表示错误日志指向普通日志，因为普通日志已经去到黑洞，所以错误日志等同于也不输出。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;当我准备部署一个jar包到阿里云上运行时候遇到的问题。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="java" scheme="http://aceegg.com/categories/java/"/>
+    
+    
+      <category term="java,jar包,Linux后台" scheme="http://aceegg.com/tags/java-jar%E5%8C%85-Linux%E5%90%8E%E5%8F%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>只有少数人可以看得到的世界</title>

@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>在Linux后台运行jar包 | 一粒蛋</title>
+
+  
+  <meta name="author" content="aceegg">
+  
+
+  
+  <meta name="description" content="当我准备部署一个jar包到阿里云上运行时候遇到的问题。">
+  
+
+  
+  
+  <meta name="keywords" content="java,jar包,Linux后台">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="在Linux后台运行jar包"/>
+
+  <meta property="og:site_name" content="一粒蛋"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="一粒蛋" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">一粒蛋</a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>在Linux后台运行jar包</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2017/12/07/在Linux后台运行jar包/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-12-07T05:14:41.000Z">
+          2017-12-07
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>当我准备部署一个jar包到阿里云上运行时候遇到的问题。</p>
+<a id="more"></a>
+<p>公司后台框架用的是<strong>Spring boot</strong>之前公司的服务器一直运行在<strong>tomcate</strong>容器中，所以打出来的包都是<code>war</code>包</p>
+<p>最近公司升级架构，采用docker微服务（也是阿里云提供的技术），这样一来就更适合打包成<code>jar</code>运行在docker容器里。</p>
+<h4 id="普通的运行jar包命令"><a href="#普通的运行jar包命令" class="headerlink" title="普通的运行jar包命令"></a>普通的运行jar包命令</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ java -jar xxxx.jar &amp;</div></pre></td></tr></table></figure>
+<p>这个命令有个缺点，当我关闭终端时命令也随之停止。作为后端肯定必须24小时运行下去，我总不能连我电脑一起一直开着。所以要找到一种后台运行<code>jar</code>的方法.</p>
+<h4 id="后台运行jar包命令"><a href="#后台运行jar包命令" class="headerlink" title="后台运行jar包命令"></a>后台运行jar包命令</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup java -jar xxx.jar &amp;</div></pre></td></tr></table></figure>
+<p>多了一个<code>nohup</code>命令，这个命令就可以让jar运行在Linux后台，即使你关闭终端程序不会终止。</p>
+<h4 id="多个jar包可以一起运行"><a href="#多个jar包可以一起运行" class="headerlink" title="多个jar包可以一起运行"></a>多个jar包可以一起运行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup java -jar xxx1.jar &amp; nohup java -jar xxx2.jar &amp; nohup java -jar xxx3.jar &amp;</div></pre></td></tr></table></figure>
+<h4 id="查看后台"><a href="#查看后台" class="headerlink" title="查看后台"></a>查看后台</h4><p>如果你想查看当前后台运行了哪些用这个命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ jobs</div></pre></td></tr></table></figure>
+<p>将会打印出类似下面这样的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[1]   Running                 nohup java -jar 1111.jar &amp;                                                                                                                                                                                         </div><div class="line">[2]-  Running                 nohup java -jar 2222.jar &amp;                                                                                                                                                                                        </div><div class="line">[3]+  Running                 nohup java -jar 3333.jar &amp;</div></pre></td></tr></table></figure>
+<p><code>Running</code>这一列代表程序状态，如果程序有问题，再打一次<code>jobs</code>命令就会看到变成<code>Exiting</code>表示程序停止了，第三次输入<code>jobs</code>就看不到那个程序因为已经终止退出后台。</p>
+<p><code>+</code>和<code>-</code>符号代表第一个和最后一个运行的后台程序。</p>
+<p>其他相关信息我就不多说了，网上资料很多，这里只再举例不打印日志的方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup java -jar xxx1.jar &gt;/dev/<span class="keyword">null</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</div></pre></td></tr></table></figure></p>
+<p><code>nohup</code>默认会输出日志到nohup.out，用<code>&gt;</code>命令可以重新指定输出文件，这里指定了Linux黑洞，效果等同于没有输出日志。<code>2&gt;&amp;1</code>表示错误日志指向普通日志，因为普通日志已经去到黑洞，所以错误日志等同于也不输出。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/java/">java</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/java-jar包-Linux后台/">java,jar包,Linux后台</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'aceegg-1';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 aceegg
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>
