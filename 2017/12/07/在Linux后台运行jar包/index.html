@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <title>在Linux后台运行jar包 | 一粒蛋</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+
+    
+
+    
+
+    
+
+    
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥚</text></svg>">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1640859999376.css">
+
+
+    
+<link rel="stylesheet" href="/dist/custom.css?v=1640859999376.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+            
+            valine: {
+                enable: true,
+                appId: "b6FES4tkHbcwpQafUHTW1zvh-gzGzoHsz",
+                appKey: "45tcuAib1ATmA6hIO9XrKlWs",
+            },
+            
+            
+        }
+        window.aomori_logo_typed_animated = false
+        window.aomori_search_algolia = false
+
+    </script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-avatar avatar avatar-sm">
+                <img src="/images/profile.jpg" alt="imcloud">
+            </div>
+            
+            <div class="header-type-inner">
+                
+                    <a class="header-type-title" href="/">一粒蛋</a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+                <a href="/categories">Categories</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+    <a class="social" target="_blank" href="https://github.com/imcloud">
+        <box-icon type='logo' name='github'></box-icon>
+    </a>
+
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                    <a href="/categories">Categories</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-ckxu2ajm7000ewwyacs1ef8ys" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      在Linux后台运行jar包
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2017-12-07T05:48:50.000Z" itemprop="datePublished">2017-12-07</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jar%E5%8C%85/" rel="tag">jar包</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+            </div>
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <p>当我准备部署一个jar包到阿里云上运行时候遇到的问题。</p>
+<span id="more"></span>
+
+<p>公司后台框架用的是Spring boot之前公司的服务器一直运行在tomcate容器中，所以打出来的包都是<code>war包</code></p>
+<p>最近公司升级架构，采用docker微服务（也是阿里云提供的技术），这样一来就更适合打包成<code>jar</code>运行在docker容器里。</p>
+<h3 id="普通的运行jar包命令"><a href="#普通的运行jar包命令" class="headerlink" title="普通的运行jar包命令"></a>普通的运行jar包命令</h3><pre><code>$ java -jar xxxx.jar &amp;
+</code></pre>
+<p>这个命令有个缺点，当我关闭终端时命令也随之停止。作为后端肯定必须24小时运行下去，我总不能连我电脑一起一直开着。所以要找到一种后台运行<code>jar</code>的方法.</p>
+<h3 id="后台运行jar包命令"><a href="#后台运行jar包命令" class="headerlink" title="后台运行jar包命令"></a>后台运行jar包命令</h3><pre><code>$ nohup java -jar xxx.jar &amp;
+</code></pre>
+<p>多了一个<code>nohup</code>命令，这个命令就可以让jar运行在Linux后台，即使你关闭终端程序不会终止。</p>
+<h3 id="多个jar包可以一起运行"><a href="#多个jar包可以一起运行" class="headerlink" title="多个jar包可以一起运行"></a>多个jar包可以一起运行</h3><pre><code>$ nohup java -jar xxx1.jar &amp; nohup java -jar xxx2.jar &amp; nohup java -jar xxx3.jar &amp;
+</code></pre>
+<h3 id="查看后台"><a href="#查看后台" class="headerlink" title="查看后台"></a>查看后台</h3><p>如果你想查看当前后台运行了哪些用这个命令：</p>
+<pre><code>$ jobs
+</code></pre>
+<p>将会打印出类似下面这样的结果：</p>
+<pre><code>[1]   Running                 nohup java -jar 1111.jar &amp;                                                                                                                                                                                         
+[2]-  Running                 nohup java -jar 2222.jar &amp;                                                                                                                                                                                        
+[3]+  Running                 nohup java -jar 3333.jar &amp;
+</code></pre>
+<p><code>Running</code>这一列代表程序状态，如果程序有问题，再打一次<code>jobs</code>命令就会看到变成<code>Exiting</code>表示程序停止了，第三次输入<code>jobs</code>就看不到那个程序因为已经终止退出后台。</p>
+<p><code>+</code>和<code>-</code>符号代表第一个和最后一个运行的后台程序。</p>
+<p>其他相关信息我就不多说了，网上资料很多，这里只再举例不打印日志的方法：</p>
+<pre><code>nohup java -jar xxx1.jar &gt;/dev/null 2&gt;&amp;1 &amp;
+</code></pre>
+<p><code>nohup</code>默认会输出日志到nohup.out，用<code>&gt;</code>命令可以重新指定输出文件，这里指定了Linux黑洞，效果等同于没有输出日志。<code>2&gt;&amp;1</code>表示错误日志指向普通日志，因为普通日志已经去到黑洞，所以错误日志等同于也不输出。</p>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+<div class="article-copyright hairline">
+  <p>
+    本作品采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可。
+  </p>
+</div>
+
+
+    
+
+    
+<nav class="article-nav">
+  
+  
+    <a href="/2017/11/28/%E5%8F%AA%E6%9C%89%E5%B0%91%E6%95%B0%E4%BA%BA%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%BE%97%E5%88%B0%E7%9A%84%E4%B8%96%E7%95%8C/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">(已过时)只有少数人可以看得到的世界</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=在Linux后台运行jar包 - 一粒蛋&url=https://aceegg.com/2017/12/07/%E5%9C%A8Linux%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8Cjar%E5%8C%85/">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=在Linux后台运行jar包 - 一粒蛋&u=https://aceegg.com/2017/12/07/%E5%9C%A8Linux%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8Cjar%E5%8C%85/">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=在Linux后台运行jar包 - 一粒蛋&url=https://aceegg.com/2017/12/07/%E5%9C%A8Linux%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8Cjar%E5%8C%85/&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+
+<section class="comments">
+    <div id="valine-container"></div>
+</section>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+
+
+
+
+</div>
+                </section>
+            </section>
+
+            
+            <aside class="sidebar ">
+                
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxAndroid/" rel="tag">RxAndroid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava/" rel="tag">RxJava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api-host/" rel="tag">api host</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jar%E5%8C%85/" rel="tag">jar包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8E%E5%8F%B0/" rel="tag">后台</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="tag">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%8D%93%E7%AD%BE%E5%90%8D/" rel="tag">安卓签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%83%E8%B7%AF/" rel="tag">心路</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%84%9F%E6%83%B3/" rel="tag">感想</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AD%BE%E5%90%8D/" rel="tag">签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E5%88%92/" rel="tag">计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%84%E8%AE%BA/" rel="tag">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C/" rel="tag">谷歌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%B2%E8%81%8A/" rel="tag">闲聊</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+            
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            一粒蛋 &copy; 2021<br>
+            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
+        </div>
+    </div>
+
+</footer>
+
+
+
+
+
+
+<script src="/dist/build.js?1640859999376.js"></script>
+
+
+<script src="/dist/custom.js?1640859999376.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

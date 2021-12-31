@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>在Linux后台运行jar包</title>
+      <link href="/2017/12/07/%E5%9C%A8Linux%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8Cjar%E5%8C%85/"/>
+      <url>/2017/12/07/%E5%9C%A8Linux%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8Cjar%E5%8C%85/</url>
+      
+        <content type="html"><![CDATA[<p>当我准备部署一个jar包到阿里云上运行时候遇到的问题。</p><span id="more"></span><p>公司后台框架用的是Spring boot之前公司的服务器一直运行在tomcate容器中，所以打出来的包都是<code>war包</code></p><p>最近公司升级架构，采用docker微服务（也是阿里云提供的技术），这样一来就更适合打包成<code>jar</code>运行在docker容器里。</p><h3 id="普通的运行jar包命令"><a href="#普通的运行jar包命令" class="headerlink" title="普通的运行jar包命令"></a>普通的运行jar包命令</h3><pre><code>$ java -jar xxxx.jar &amp;</code></pre><p>这个命令有个缺点，当我关闭终端时命令也随之停止。作为后端肯定必须24小时运行下去，我总不能连我电脑一起一直开着。所以要找到一种后台运行<code>jar</code>的方法.</p><h3 id="后台运行jar包命令"><a href="#后台运行jar包命令" class="headerlink" title="后台运行jar包命令"></a>后台运行jar包命令</h3><pre><code>$ nohup java -jar xxx.jar &amp;</code></pre><p>多了一个<code>nohup</code>命令，这个命令就可以让jar运行在Linux后台，即使你关闭终端程序不会终止。</p><h3 id="多个jar包可以一起运行"><a href="#多个jar包可以一起运行" class="headerlink" title="多个jar包可以一起运行"></a>多个jar包可以一起运行</h3><pre><code>$ nohup java -jar xxx1.jar &amp; nohup java -jar xxx2.jar &amp; nohup java -jar xxx3.jar &amp;</code></pre><h3 id="查看后台"><a href="#查看后台" class="headerlink" title="查看后台"></a>查看后台</h3><p>如果你想查看当前后台运行了哪些用这个命令：</p><pre><code>$ jobs</code></pre><p>将会打印出类似下面这样的结果：</p><pre><code>[1]   Running                 nohup java -jar 1111.jar &amp;                                                                                                                                                                                         [2]-  Running                 nohup java -jar 2222.jar &amp;                                                                                                                                                                                        [3]+  Running                 nohup java -jar 3333.jar &amp;</code></pre><p><code>Running</code>这一列代表程序状态，如果程序有问题，再打一次<code>jobs</code>命令就会看到变成<code>Exiting</code>表示程序停止了，第三次输入<code>jobs</code>就看不到那个程序因为已经终止退出后台。</p><p><code>+</code>和<code>-</code>符号代表第一个和最后一个运行的后台程序。</p><p>其他相关信息我就不多说了，网上资料很多，这里只再举例不打印日志的方法：</p><pre><code>nohup java -jar xxx1.jar &gt;/dev/null 2&gt;&amp;1 &amp;</code></pre><p><code>nohup</code>默认会输出日志到nohup.out，用<code>&gt;</code>命令可以重新指定输出文件，这里指定了Linux黑洞，效果等同于没有输出日志。<code>2&gt;&amp;1</code>表示错误日志指向普通日志，因为普通日志已经去到黑洞，所以错误日志等同于也不输出。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> jar包 </tag>
+            
+            <tag> Linux </tag>
+            
+            <tag> 后台 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>(已过时)只有少数人可以看得到的世界</title>
+      <link href="/2017/11/28/%E5%8F%AA%E6%9C%89%E5%B0%91%E6%95%B0%E4%BA%BA%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%BE%97%E5%88%B0%E7%9A%84%E4%B8%96%E7%95%8C/"/>
+      <url>/2017/11/28/%E5%8F%AA%E6%9C%89%E5%B0%91%E6%95%B0%E4%BA%BA%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%BE%97%E5%88%B0%E7%9A%84%E4%B8%96%E7%95%8C/</url>
+      
+        <content type="html"><![CDATA[<p><del>(已过时)其实这个博客是有评论功能的…</del></p><span id="more"></span><p>在国内当一个安卓工程师其实是一件非常不容易的事情，非常不容易。<br>你所从事的核心技术来自于一个异次元，如果你不懂得突破次元壁，你只能去咀嚼别人咀嚼之后吐出来的毫无新鲜营养的东西。<br>甚至于，有时候，能不能突破次元壁成为了判断一个安卓工程师技术水平等级的标准。</p><p>谷歌，我个人是非常喜欢的一家公司。</p><p>我总是非常理想主义。如果有一天整个地球再也没有国家之分，没有政府的明争暗斗，没有种族的歧视，整个人类团结一起，只为了更美好的世界一起奋斗，所有顶尖的科学家、技术人员携手合作，所有资源可以共享、所有技术毫无保留的分享，我相信那个时候，人类的发展会得到核弹般的爆炸速度。</p><p>终究不过是理想罢了。</p><p>面对现实，我们获取技术的成本比iOS开发者要高很多。</p><p>这不是抱怨，这是感慨，人类的那点利益之争啊，要持续到什么时候。。。。</p><p>这个博客是有评论功能的，只不过是提供给已经突破次元壁的人的。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 闲聊 </tag>
+            
+            <tag> 评论 </tag>
+            
+            <tag> 谷歌 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>利用gradle自动切换API host</title>
+      <link href="/2016/12/14/%E5%88%A9%E7%94%A8gradle%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2API-host/"/>
+      <url>/2016/12/14/%E5%88%A9%E7%94%A8gradle%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2API-host/</url>
+      
+        <content type="html"><![CDATA[<p>公司建立了多个服务器区分测试环境和生产环境，每次发版时如果稍不注意就会用错host，甚至可能造成发布到线上的却使用了测试环境host的大错。利用gradle可以帮助我们自动化切换host。 网上大部分教程都是在app目录下直接添加BuildConfig的字段来实现，因为我把网络层抽离出来成一个单独的module，相对于稍微复杂一点，以此博文记录一下过程。</p><span id="more"></span><h2 id="在module中建立多个flavor"><a href="#在module中建立多个flavor" class="headerlink" title="在module中建立多个flavor"></a>在module中建立多个flavor</h2><p>在目标module的目录下找到build.gradle打开</p><pre><code>android&#123;  // 设置默认的flavor 一个flavor分debug和release,这里随意挑一个即可 因为我要用到的buildConfigField不需要区分  defaultPublishConfig &quot;my_testDebug&quot;  // 具体作用不明，但是不设置会报错  publishNonDefault true  // 建立多个flavor  productFlavors&#123;    my_test &#123;      buildConfigField &quot;boolean&quot;, &quot;API_HOST&quot;, &quot;true&quot;    &#125;    my_release &#123;      buildConfigField &quot;boolean&quot;, &quot;API_HOST&quot;, &quot;false&quot;    &#125;  &#125;&#125;</code></pre><p>这样就完成了在module目录中建立多个flavor的工作，接下来只需要在打包时使用对应的flavor即可。</p><h2 id="在app中调用module指定的flavor"><a href="#在app中调用module指定的flavor" class="headerlink" title="在app中调用module指定的flavor"></a>在app中调用module指定的flavor</h2><p>在主应用目录app／下找到build.gradle文件打开</p><pre><code>android&#123;  productFlavors&#123;    app_test&#123;&#125;    app_release&#123;&#125;  &#125;&#125;dependencies&#123;  // 需要注意的是，不再是compile，把指定渠道的名字加在前面。  app_testCompile project(path: &#39;moduleName&#39;, configuration: &#39;my_testDebug&#39;)&#125;</code></pre><p>如此已经大功告成。最后就在module中需要的地方调用变量。</p><pre><code>String host;if (BuildConfig.API_HOST) &#123;  host = RELEASE_HOST;&#125;else &#123;  host = TEST_HOST;&#125;new Retrofit.Builder()  .baseUrl(host)  .build();</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote><p>结果总是很简单，但过程中要查询多方资料。官网总是写的很简陋，很多实用的功能并没有给出使用方式，一定要科学上网啊！</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> gradle </tag>
+            
+            <tag> api host </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Android命令行签名方式</title>
+      <link href="/2016/12/13/Android%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AD%BE%E5%90%8D%E6%96%B9%E5%BC%8F/"/>
+      <url>/2016/12/13/Android%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AD%BE%E5%90%8D%E6%96%B9%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<p>在打包到某些渠道的时候会要求手动签名加固后的包</p><span id="more"></span><h2 id="使用jarsigner签名"><a href="#使用jarsigner签名" class="headerlink" title="使用jarsigner签名"></a>使用jarsigner签名</h2><pre><code>jarsigner -verbose -keystore  my.keystore -signedjar demo_signed.apk demo.apk  alias_name</code></pre><p>使用jarsigner的基本方式就是这样。需要配置环境变量才可以在任意位置使用此命令行，配置方式这里就不多说，请自行搜索。</p><p><em>参数说明</em></p><ul><li><code>-verbose</code>表示输出一些日志</li><li><code>-keystore</code>使用keysotre,所以后面紧跟的是keysotre文件的路径</li><li><code>-signedjar</code>签名jar文件</li><li><code>demo_signed.apk</code>签名之后生成的文件名字，可以随意起。</li><li><code>demo.apk</code>未签名的文件</li><li><code>alias_name</code>要使用的锁。一个钥匙库里可能有多个锁。</li></ul><p>执行后，如果一切正常就会在执行这个命令的目录下生成一个名为demo_signed.apk的文件。</p><h2 id="使用apksigner签名"><a href="#使用apksigner签名" class="headerlink" title="使用apksigner签名"></a>使用apksigner签名</h2><p><a href="https://developer.android.com/studio/publish/app-signing.html">点击查看官方签名教程</a></p><p>需要翻墙，教程是中文的。官方写的已经很通俗易懂了，这里就补充一下各个参数的解释。</p><pre><code>apksigner sign --ks my-release-key.jks my-app.apk</code></pre><p>apksigner在sdk/buildtools/（数字文件夹）/下，是一个命令行文件，类似adb、jarsigner等，如果没有就更新到最新（本博文编辑时）的25.0.1，因为这里经常更新所以这次直接拖拽apksigner文件到终端里使用,不要配环境变量了。</p><p><em>参数说明</em></p><ul><li><code>sign</code>要执行签名动作。一会签名后可使用verify检验签名后的文件</li><li><code>--ks</code>通常都是使用AndroidStudio生成的jks文件签名使用这个参数就行，后面跟上库文件路径</li><li><code>my-app.apk</code>就是未签名的apk，执行上面的命令后会被覆盖为已经签名的apk，如果想把签名后的apk另存为其他名字的文件要使用参数<code>--out &lt;filename&gt;</code></li></ul><p>执行上面的命令时作者遇到一个异常，原因是未能提供库里面一个key的密码，执行时只会提示输入库的密码。改为如下就可以：</p><pre><code>apksigner sign --ks my-release-key.jks --key-pass pass:输入你的key密码 my-app.apk</code></pre><p>这样就会为默认的key指定密码。如果你有多个key可以用–ks-key-alias 指定你的key。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上是两种签名方式，目前不清楚apksigner跟jarsigner的区别，我猜测apksigner是全局签名，也就是新版AndroidStudio在build apk时提示的full sign</p><p>不了解参数的意义时着实会让人头痛，会遇到很多坑。希望可以给阅读的人带来帮助。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安卓签名 </tag>
+            
+            <tag> 命令行 </tag>
+            
+            <tag> 签名 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>几经波折，博客重生</title>
+      <link href="/2016/05/30/%E5%87%A0%E7%BB%8F%E6%B3%A2%E6%8A%98%EF%BC%8C%E5%8D%9A%E5%AE%A2%E9%87%8D%E7%94%9F/"/>
+      <url>/2016/05/30/%E5%87%A0%E7%BB%8F%E6%B3%A2%E6%8A%98%EF%BC%8C%E5%8D%9A%E5%AE%A2%E9%87%8D%E7%94%9F/</url>
+      
+        <content type="html"><![CDATA[<p>本来只是想换个主题，不知道为何hexo突然抽风，各种错误抛出。</p><span id="more"></span><pre><code class="html">not find modul *******</code></pre><p>大概就是类似这种东西。本来觉得无视错误提示可以正常生产静态网页无所谓，然而我还是太年轻，不能deploy到Github上了。不得已按照搜索到的方法,用如下命令重新安装了一次hexo</p><blockquote><p>$ npm install hexo –no-optional</p></blockquote><p>如此错误提示的确是没有了，还没有到万事大吉的时刻，博客也要重新配置。</p><ol><li>在原博客目录下执行命令hexo init，不用担心原博客内容会丢失，原md文件和主题都会保留</li><li>接着打开配置文件，做相应的配置更改，建议自行参考官网配置说明，网上大部分的文章都是过时的。</li><li>配置好以后就可以执行hexo g生产静态网页。</li><li>网页很快会生成，如果有错误请检查自己的配置文件，配置文件对格式要求严格, 缩进、大小写、拼写、以及参数位置（我竟然把语言选项写在了日期选项里😓）等都要仔细检查。</li><li>下一步就是选择一个你自己喜欢的主题，下载安装，这里不多说了，官网提供了很多主题，主题作者都非常有爱心，安装步骤一般都很详细。我要提醒的是，主题需要插件支持，在安装插件时不要忘记git插件</li></ol><blockquote><p>$ npm install hexo-deployer-git –save</p></blockquote><ol start="6"><li>一切就绪了执行命令hexo s 在浏览器打<a href="http://localhost:4000预览下">http://localhost:4000预览下</a></li><li>预览OK了，输入hexo set_deployer（传到Github的需要前面说的git插件支持，其他请看官网说明）</li><li>发布能否成功就取决于你在Github和本地的ssh配置</li></ol><h2 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h2><p>弄好以后成就感满满。果然是太长时间没维护博客的报应吧😂😂😂</p><p>写的比较粗陋，但我也没打算把这篇扩充成一个hexo安装使用教程，网上真的是够多了。但看来看去，就我自身的感受来讲毫无参考价值，最终帮助我的是官方文档，那些教程要么是非常古老的，要么就是一篇翻译。对于新手可能遇到的问题完全没有应对提示。</p><p>我的这篇博客主要还是作为解决问题的一次记录，希望能对看到的朋友有帮助。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 心路 </tag>
+            
+            <tag> 经验 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>这一年想做的事</title>
+      <link href="/2016/02/16/%E8%BF%99%E4%B8%80%E5%B9%B4%E6%83%B3%E5%81%9A%E7%9A%84%E4%BA%8B/"/>
+      <url>/2016/02/16/%E8%BF%99%E4%B8%80%E5%B9%B4%E6%83%B3%E5%81%9A%E7%9A%84%E4%BA%8B/</url>
+      
+        <content type="html"><![CDATA[<p>想做，然而，最终还是没有做到很多</p><span id="more"></span><h3 id="告别"><a href="#告别" class="headerlink" title="告别"></a>告别</h3><p>2015年，一年时间总是足够发生很多难忘的事情。也许生在北方的关系，我更喜欢温暖的地方，从事it工作的话，朝气蓬勃的深圳于是成了我的最佳选择。温暖的南方生活也并没有想象中多么美好，南北的文化差异让我有些许不能适应。年底，因为一些原因我辞职了。辞职后再三考虑，决定告别深圳，去往靠近北方的上海。</p><h3 id="魔都"><a href="#魔都" class="headerlink" title="魔都"></a>魔都</h3><p>为什么是上海？这个问题几乎每次面试都被问到，但我自己其实也没什么特别重大的理由，可以说仅仅是喜欢就来了。这么说显得比较任性也一定会给面试官留下我这个人飘忽不定的感觉。但其实我觉得每个人做事情的契机不同，动机反倒不一定是驱动的主力。<br>可能是在外面久了，换了城市也并不会给我带来什么感觉，要说有也就是吃饭更贵了、地铁没有深圳新、比深圳大比深圳冷。。。</p><h3 id="想做的事"><a href="#想做的事" class="headerlink" title="想做的事"></a>想做的事</h3><p>有了新的环境也要为自己立下新的目标。</p><ol><li>完成武无止境。也许该考虑换个名字。这是我一直想完成却没有去实现的魔兽地图。冰封王座记载了我高中的回忆，我想亲自做出一张地图然后继续和我的挚交们愉快的玩耍。游戏设计过于复杂，一直放着没有去认真去做，今年立下的第一个目标就是完成它，因为我怕以后真的没有机会再见到那几个兄弟。</li><li>维护这个博客。说实话，文笔大不如前，手放到键盘上都不知道该敲什么，但我要坚持，坚持去写博客无论是技术博客或者只是唠叨几句，相信文笔方面会慢慢提升。博客的意义不必多说。</li><li>维护开源项目。至少一个吧，将自己的一些东西幻化为代码贡献出来。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 心路 </tag>
+            
+            <tag> 感想 </tag>
+            
+            <tag> 计划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>在项目里运行RxAndroid － 第二天</title>
+      <link href="/2015/12/22/%E5%9C%A8%E9%A1%B9%E7%9B%AE%E9%87%8C%E8%BF%90%E8%A1%8CRxAndroid-%EF%BC%8D-%E7%AC%AC%E4%BA%8C%E5%A4%A9/"/>
+      <url>/2015/12/22/%E5%9C%A8%E9%A1%B9%E7%9B%AE%E9%87%8C%E8%BF%90%E8%A1%8CRxAndroid-%EF%BC%8D-%E7%AC%AC%E4%BA%8C%E5%A4%A9/</url>
+      
+        <content type="html"><![CDATA[<p>继续我的rx之路</p><span id="more"></span><h2 id="引用方法"><a href="#引用方法" class="headerlink" title="引用方法"></a>引用方法</h2><p>在你的app下的gradle里添加如下引用</p><pre><code class="java">compile &#39;io.reactivex:rxandroid:1.1.0&#39;// Because RxAndroid releases are few and far between, it is recommended you also// explicitly depend on RxJava&#39;s latest version for bug fixes and new features.compile &#39;io.reactivex:rxjava:1.1.0&#39;</code></pre><p>我的项目使用<a href="https://github.com/square/retrofit">Retrofit</a>作为网络框架，所以还需要引入<a href="https://github.com/square/retrofit">Retrofit</a></p><pre><code class="java">compile &#39;com.squareup.retrofit2:retrofit:2.0.0-beta3&#39;</code></pre><p><a href="https://github.com/square/retrofit">Retrofit</a>提供了与RxJava无缝衔接的接口，所以笔者非常庆幸当初选择了它作为网络基础框架。关于<a href="https://github.com/square/retrofit">Retrofit</a>的使用这里就不细说了，以后有机会希望我也能补上一篇自己的使用心得。</p><h2 id="接口的写法"><a href="#接口的写法" class="headerlink" title="接口的写法"></a>接口的写法</h2><p>在retrofit2.0当中接口方法有了返回值，想使用RxJava仅仅修改返回值为Observable就可以。</p><pre><code class="java">@FormUrlEncoded @POST(API_PHP_APP_API) Observable&lt;Result&lt;User&gt;&gt; login(@FieldMap Map&lt;String, Object&gt; params);</code></pre><p>如此就完成了接口的改造。实际使用时代码的书写规则就发生了神奇变化！</p><pre><code class="java">UserRequest.loginCall(&quot;username&quot;, &quot;password&quot;)        .subscribeOn(Schedulers.io())  // 使用io线程处理请求        .observeOn(AndroidSchedulers.mainThread()) // 使用主线程处理下面的结果        .subscribe(new Observer&lt;Result&lt;User&gt;&gt;() &#123;          @Override public void onCompleted() &#123;                      &#125;          @Override public void onError(Throwable e) &#123;            // 登录失败          &#125;          @Override public void onNext(Result&lt;User&gt; userResult) &#123;            // 服务器返回登录成功,你可以直接操作返回的json数据已经转化完成的user对象            // 例如显示登陆的用户名tvUname.setText(user.username)          &#125;        &#125;);</code></pre><h2 id="多个异步请求顺序完成"><a href="#多个异步请求顺序完成" class="headerlink" title="多个异步请求顺序完成"></a>多个异步请求顺序完成</h2><p>上面的例子只是单一的请求处理，实际上你用okhttp的call代码会更简洁。我的项目里遇到的问题是有多个请求必须按顺序依次执行。只需要在上面的代码基础上稍微做点修改。</p><h3 id="操作符-map和flatMap"><a href="#操作符-map和flatMap" class="headerlink" title="操作符 map和flatMap"></a>操作符 map和flatMap</h3><p>map可不是数据结构那个map，也不是地图！map是RxJava的操作符之一，他的作用是接收上一个observer的数据并生产一个新的observer传递下去。有点像吃掉了一棵树的苹果，然后用种子种出另外一棵树给下一个人吃，当然他的生长速度是一瞬间。</p><h3 id="添加操作符"><a href="#添加操作符" class="headerlink" title="添加操作符"></a>添加操作符</h3><p>既然是承接上一个的结果，所以写在后面</p><pre><code class="java">UserRequest.registCall(phone, varify, password, invite)//注册        .observeOn(Schedulers.io())        .flatMap(new Func1&lt;Result&lt;User&gt;, Observable&lt;Result&lt;User&gt;&gt;&gt;() &#123;//登陆          @Override public Observable&lt;Result&lt;User&gt;&gt; call(Result&lt;User&gt; userResult) &#123;            return UserRequest.loginCall(phone, password);          &#125;        &#125;)        ...// 按需要加任意个操作符        .flatMap(new Func1&lt;Observable&lt;User&gt;, Observable&lt;Result&gt;&gt;() &#123;          @Override public Observable&lt;Result&gt; call(Observable&lt;User&gt; userObservable) &#123;            return UserRequest.setLevelCall(2);          &#125;        &#125;)        .subscribeOn(Schedulers.io())        .observeOn(AndroidSchedulers.mainThread())        .subscribe(new Observer&lt;Result&gt;() &#123;          @Override public void onCompleted() &#123;          &#125;          @Override public void onError(Throwable e) &#123;              // 错误处理，中间有一个请求出现错误都会终止          &#125;          @Override public void onNext(Result result) &#123;            // 成功          &#125;        &#125;);</code></pre><p>稍加处理后整个代码的思维清晰度将是一目了然。这里就不再献丑了。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到这里就完成了RxJava的引入体验。现在只是这里一处有这样的需求，如果长时间使用米发现大问题就打算大规模的优化改造。写这个文章一方面记录下自己的心得，一方面也希望能帮助想快速入门又不想阅读长篇大论的朋友。我自己也很讨厌啰嗦的文字，身为程序员其实最好的交流语言就是代码。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> RxAndroid </tag>
+            
+            <tag> RxJava </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>在项目里运行RxAndroid － 第一天</title>
+      <link href="/2015/12/22/%E5%9C%A8%E9%A1%B9%E7%9B%AE%E9%87%8C%E8%BF%90%E8%A1%8CRxAndroid-%EF%BC%8D-%E7%AC%AC%E4%B8%80%E5%A4%A9/"/>
+      <url>/2015/12/22/%E5%9C%A8%E9%A1%B9%E7%9B%AE%E9%87%8C%E8%BF%90%E8%A1%8CRxAndroid-%EF%BC%8D-%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
+      
+        <content type="html"><![CDATA[<p>对于近来大热的RxJava，很早以前就有在关注。其优雅的代码格式我相信任何一位程序员见了都会赞不绝口。在网上查阅相关使用资料后终于也是心痒难耐，决定将此优秀编程思想框架应用到自己的项目中，以博客形式记录整个使用过程。</p><span id="more"></span><h2 id="什么是RxJava-RxAndroid"><a href="#什么是RxJava-RxAndroid" class="headerlink" title="什么是RxJava?RxAndroid?"></a>什么是RxJava?RxAndroid?</h2><ul><li>先确认下==RxJava==的概念。</li></ul><blockquote><p>a library for composing asynchronous and event-based programs using observable sequences for the Java VM.</p></blockquote><p>官方对RxJava的介绍就这一句，翻译过来意思就是一个使用事件机制调解异步的程序，它可以让程序按照可观察的序列在虚拟机上运行。第一次看完都会有一个这是什么鬼的感觉，我翻译的也许不是特别准确，但它的核心思想就是异步和序列。作为程序员，其实代码永远比语言更有效果，读者可以在事例代码中慢慢了解RxJava的强大之处。</p><ul><li>而RxAndroid就很简单，它是基于RxJava的带有生命周期管理，这是为了安卓系统专门打造的库。</li></ul><h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>换句话说就是我为什么要用RxJava，他能解决我的什么问题？如果你是只勤奋程序员，学习RxJava是出于对开发知识的热爱那这一段可以忽略了。在实际开发时我遇到了这样一个需求问题，在注册流程中有几个接口需要在同一页面中依次请求，当用户输入完用户名和密码，点击注册按钮后，首先调用注册接口，注册成功时得到返回的用户ID，再依据此ID调用登录接口，登录成功后调用用户信息接口，确认用户信息后调用设置用户登记接口。这四个接口一环套一环必须依次执行。到这里也许你已经明白这种情况下的代码阅读复杂性。</p><h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h2><p>RxJava可以轻松帮你优化代码的可读性。上面的情况在RxJava眼里就会变成－－</p><pre><code class="java">示例伪代码    Observable            .register()            .login()            .getUserInfo()            .setUserLevel()            .jumpToHome();        (这不是真正的写法！)</code></pre><p>这段伪代码表现的就是RxJava的代码阅读过程，是不是非常清晰。</p><p>今天就写到这里，明天将进入真正的coding部分。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Android </tag>
+            
+            <tag> RxAndroid </tag>
+            
+            <tag> RxJava </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>第一篇</title>
+      <link href="/2015/12/21/%E7%AC%AC%E4%B8%80%E7%AF%87/"/>
+      <url>/2015/12/21/%E7%AC%AC%E4%B8%80%E7%AF%87/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><p>经过一番折腾，博客算是正式开张了。现在也没什么东西可以写，以后想抒发情感的时候再考虑吧，当然自己也希望积攒一些技术文章。</p><h3 id="预祝大家新年发大财！"><a href="#预祝大家新年发大财！" class="headerlink" title="预祝大家新年发大财！"></a>预祝大家新年发大财！</h3><p>木有红包！</p><blockquote><p>说起来现在的红包的文化也算是中国特色了。甚至演化为变相赌博。谨记真理－－不要贪小便宜！</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>

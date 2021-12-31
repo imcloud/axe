@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <title>利用gradle自动切换API host | 一粒蛋</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+
+    
+
+    
+
+    
+
+    
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥚</text></svg>">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1640859999376.css">
+
+
+    
+<link rel="stylesheet" href="/dist/custom.css?v=1640859999376.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+            
+            valine: {
+                enable: true,
+                appId: "b6FES4tkHbcwpQafUHTW1zvh-gzGzoHsz",
+                appKey: "45tcuAib1ATmA6hIO9XrKlWs",
+            },
+            
+            
+        }
+        window.aomori_logo_typed_animated = false
+        window.aomori_search_algolia = false
+
+    </script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-avatar avatar avatar-sm">
+                <img src="/images/profile.jpg" alt="imcloud">
+            </div>
+            
+            <div class="header-type-inner">
+                
+                    <a class="header-type-title" href="/">一粒蛋</a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+                <a href="/categories">Categories</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+    <a class="social" target="_blank" href="https://github.com/imcloud">
+        <box-icon type='logo' name='github'></box-icon>
+    </a>
+
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                    <a href="/categories">Categories</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-ckxu2ajm20007wwyaac5fhhet" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      利用gradle自动切换API host
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2016-12-14T05:38:58.000Z" itemprop="datePublished">2016-12-14</time>
+</div>
+
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api-host/" rel="tag">api host</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li></ul>
+            </div>
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <p>公司建立了多个服务器区分测试环境和生产环境，每次发版时如果稍不注意就会用错host，甚至可能造成发布到线上的却使用了测试环境host的大错。利用gradle可以帮助我们自动化切换host。 网上大部分教程都是在app目录下直接添加BuildConfig的字段来实现，因为我把网络层抽离出来成一个单独的module，相对于稍微复杂一点，以此博文记录一下过程。</p>
+<span id="more"></span>
+
+<h2 id="在module中建立多个flavor"><a href="#在module中建立多个flavor" class="headerlink" title="在module中建立多个flavor"></a>在module中建立多个flavor</h2><p>在目标module的目录下找到build.gradle打开</p>
+<pre><code>android&#123;
+  // 设置默认的flavor 一个flavor分debug和release,这里随意挑一个即可 因为我要用到的buildConfigField不需要区分
+  defaultPublishConfig &quot;my_testDebug&quot;
+  // 具体作用不明，但是不设置会报错
+  publishNonDefault true
+  // 建立多个flavor
+  productFlavors&#123;
+    my_test &#123;
+      buildConfigField &quot;boolean&quot;, &quot;API_HOST&quot;, &quot;true&quot;
+    &#125;
+    my_release &#123;
+      buildConfigField &quot;boolean&quot;, &quot;API_HOST&quot;, &quot;false&quot;
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+<p>这样就完成了在module目录中建立多个flavor的工作，接下来只需要在打包时使用对应的flavor即可。</p>
+<h2 id="在app中调用module指定的flavor"><a href="#在app中调用module指定的flavor" class="headerlink" title="在app中调用module指定的flavor"></a>在app中调用module指定的flavor</h2><p>在主应用目录app／下找到build.gradle文件打开</p>
+<pre><code>android&#123;
+  productFlavors&#123;
+    app_test&#123;&#125;
+    app_release&#123;&#125;
+  &#125;
+&#125;
+dependencies&#123;
+  // 需要注意的是，不再是compile，把指定渠道的名字加在前面。
+  app_testCompile project(path: &#39;moduleName&#39;, configuration: &#39;my_testDebug&#39;)
+&#125;
+</code></pre>
+<p>如此已经大功告成。最后就在module中需要的地方调用变量。</p>
+<pre><code>String host;
+if (BuildConfig.API_HOST) &#123;
+  host = RELEASE_HOST;
+&#125;else &#123;
+  host = TEST_HOST;
+&#125;
+new Retrofit.Builder()
+  .baseUrl(host)
+  .build();
+</code></pre>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
+<p>结果总是很简单，但过程中要查询多方资料。官网总是写的很简陋，很多实用的功能并没有给出使用方式，一定要科学上网啊！</p>
+</blockquote>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+<div class="article-copyright hairline">
+  <p>
+    本作品采用 <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a> 进行许可。
+  </p>
+</div>
+
+
+    
+
+    
+<nav class="article-nav">
+  
+    <a href="/2017/11/28/%E5%8F%AA%E6%9C%89%E5%B0%91%E6%95%B0%E4%BA%BA%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%BE%97%E5%88%B0%E7%9A%84%E4%B8%96%E7%95%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          (已过时)只有少数人可以看得到的世界
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/13/Android%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AD%BE%E5%90%8D%E6%96%B9%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">Android命令行签名方式</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=利用gradle自动切换API host - 一粒蛋&url=https://aceegg.com/2016/12/14/%E5%88%A9%E7%94%A8gradle%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2API-host/">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=利用gradle自动切换API host - 一粒蛋&u=https://aceegg.com/2016/12/14/%E5%88%A9%E7%94%A8gradle%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2API-host/">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=利用gradle自动切换API host - 一粒蛋&url=https://aceegg.com/2016/12/14/%E5%88%A9%E7%94%A8gradle%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2API-host/&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+
+<section class="comments">
+    <div id="valine-container"></div>
+</section>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+
+
+
+
+</div>
+                </section>
+            </section>
+
+            
+            <aside class="sidebar ">
+                
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxAndroid/" rel="tag">RxAndroid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava/" rel="tag">RxJava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api-host/" rel="tag">api host</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jar%E5%8C%85/" rel="tag">jar包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%8E%E5%8F%B0/" rel="tag">后台</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="tag">命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%8D%93%E7%AD%BE%E5%90%8D/" rel="tag">安卓签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%83%E8%B7%AF/" rel="tag">心路</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%84%9F%E6%83%B3/" rel="tag">感想</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AD%BE%E5%90%8D/" rel="tag">签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C/" rel="tag">经验</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E5%88%92/" rel="tag">计划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%84%E8%AE%BA/" rel="tag">评论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C/" rel="tag">谷歌</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%97%B2%E8%81%8A/" rel="tag">闲聊</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+            
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            一粒蛋 &copy; 2021<br>
+            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
+        </div>
+    </div>
+
+</footer>
+
+
+
+
+
+
+<script src="/dist/build.js?1640859999376.js"></script>
+
+
+<script src="/dist/custom.js?1640859999376.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
