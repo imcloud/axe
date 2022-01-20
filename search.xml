@@ -4,6 +4,41 @@
   
     
     <entry>
+      <title>记一次RxJava里zip操作符引起的崩溃</title>
+      <link href="/2022/01/20/%E8%AE%B0%E4%B8%80%E6%AC%A1RxJava%E9%87%8Czip%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%BC%95%E8%B5%B7%E7%9A%84%E5%B4%A9%E6%BA%83/"/>
+      <url>/2022/01/20/%E8%AE%B0%E4%B8%80%E6%AC%A1RxJava%E9%87%8Czip%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%BC%95%E8%B5%B7%E7%9A%84%E5%B4%A9%E6%BA%83/</url>
+      
+        <content type="html"><![CDATA[<p>先说一下是什么造成了崩溃</p><pre><code>io.reactivex.exceptions.UndeliverableException: The exception could not be delivered to the consumer because it has already canceled/disposed the flow or the exception has nowhere to go to begin with</code></pre><p>在已经取消或处置完成的流中发生了异常，异常无处可去，只能抛出来给系统。</p><span id="more"></span><h1 id="案发现场"><a href="#案发现场" class="headerlink" title="案发现场"></a>案发现场</h1><p>代码很简单，在一个<code>zip操作符</code>中接收两个数据源，然后转发出一个新数据。</p><pre><code>// 创建数据源, 代码简化为崩溃复现的必要条件fun getSource(id: Int): Observable&lt;String&gt; &#123;        return Observable.create&lt;String&gt; &#123; emitter -&gt;                lifecycleScope.launch &#123;                    delay(100) // 模拟数据加载耗时                    emitter.onError(IllegalStateException(&quot;发生异常 $id&quot;))                &#125;        &#125;&#125;// 合并两个数据加载，可以看到`subscribe`里有做接收异常的处理Observable.zip(getSource(1), getSource(2), &#123; s1, s2 -&gt; &quot;&quot;&#125;)        .subscribe(&#123;&#125;, &#123;&#125;)</code></pre><p>初见时应该会有人疑惑，这应该没问题啊，怎么会崩溃。</p><p>先看一眼异常堆栈信息</p><pre><code>java.lang.IllegalStateException: 发生异常 2    at cn.findpiano.piano.ui.BaseHomeActivity$onItemPressed$getSource$1$1.invokeSuspend(BaseHomeActivity.kt:868)    at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)    at kotlinx.coroutines.DispatchedTaskKt.resume(DispatchedTask.kt:234)    at kotlinx.coroutines.DispatchedTaskKt.dispatch(DispatchedTask.kt:166)    at kotlinx.coroutines.CancellableContinuationImpl.dispatchResume(CancellableContinuationImpl.kt:397)    at kotlinx.coroutines.CancellableContinuationImpl.resumeImpl(CancellableContinuationImpl.kt:431)    at kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$default(CancellableContinuationImpl.kt:420)    at kotlinx.coroutines.CancellableContinuationImpl.resumeUndispatched(CancellableContinuationImpl.kt:518)    at kotlinx.coroutines.android.HandlerContext$scheduleResumeAfterDelay$$inlined$Runnable$1.run(Runnable.kt:19)    at android.os.Handler.handleCallback(Handler.java:790)    at android.os.Handler.dispatchMessage(Handler.java:99)    at android.os.Looper.loop(Looper.java:164)    at android.app.ActivityThread.main(ActivityThread.java:6518)    at java.lang.reflect.Method.invoke(Native Method)    at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:438)    at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:807)</code></pre><p>也是让人一头雾水，从协程一路调用过来就崩溃了？难道是协程问题？</p><p>先不急下定论，当你把抛Rx异常用的类从<code>IllegalStateException</code>换成<code>Throwable</code>后就能得到另一套堆栈</p><pre><code>io.reactivex.exceptions.UndeliverableException: The exception could not be delivered to the consumer because it has already canceled/disposed the flow or the exception has nowhere to go to begin with. Further reading: https://github.com/ReactiveX/RxJava/wiki/What&#39;s-different-in-2.0#error-handling | java.lang.Throwable: 发生异常 2    at io.reactivex.plugins.RxJavaPlugins.onError(RxJavaPlugins.java:367)    at io.reactivex.internal.operators.single.SingleCreate$Emitter.onError(SingleCreate.java:81)    at cn.findpiano.piano.ui.BaseHomeActivity$onItemPressed$getSource$1$1.invokeSuspend(BaseHomeActivity.kt:868)    at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)    at kotlinx.coroutines.DispatchedTaskKt.resume(DispatchedTask.kt:234)    at kotlinx.coroutines.DispatchedTaskKt.dispatch(DispatchedTask.kt:166)    at kotlinx.coroutines.CancellableContinuationImpl.dispatchResume(CancellableContinuationImpl.kt:397)    at kotlinx.coroutines.CancellableContinuationImpl.resumeImpl(CancellableContinuationImpl.kt:431)    at kotlinx.coroutines.CancellableContinuationImpl.resumeImpl$default(CancellableContinuationImpl.kt:420)    at kotlinx.coroutines.CancellableContinuationImpl.resumeUndispatched(CancellableContinuationImpl.kt:518)    at kotlinx.coroutines.android.HandlerContext$scheduleResumeAfterDelay$$inlined$Runnable$1.run(Runnable.kt:19)    at android.os.Handler.handleCallback(Handler.java:790)    at android.os.Handler.dispatchMessage(Handler.java:99)    at android.os.Looper.loop(Looper.java:164)    at android.app.ActivityThread.main(ActivityThread.java:6518)    at java.lang.reflect.Method.invoke(Native Method)    at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:438)    at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:807)Caused by: java.lang.Throwable: 发生异常 2    ... 16 more</code></pre><h1 id="分析原因"><a href="#分析原因" class="headerlink" title="分析原因"></a>分析原因</h1><p>从第二个堆栈中终于暴露了崩溃的真凶，就是文章开头的内容。</p><p>两个数据源只是负责发射事件，出问题的应该是<code>zip操作符</code>。断点调试可以追踪到源码类<code>ObservableZip</code></p><p>发现zip的实现原理是最后一个参数observer去订阅观察前面两个数据源，收到事件后用<code>for循环</code>判断所有数据源是否结束.</p><p>当zip收到一个<code>onError</code>事件取消结束当前流，向下发送error事件。</p><p>这在同一线程下，或运气好的异步情况下是没问题的，但zip没有线程安全，两个数据源异步发送事件时就容易发生以上崩溃。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol><li>不要乱用异常类进行异常封装，容易丢失堆栈信息</li><li>RxJava的各种操作多个数据源的操作符应该都是没有线程安全的，要小心使用。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> RxAndroid </tag>
+            
+            <tag> RxJava </tag>
+            
+            <tag> zip操作符 </tag>
+            
+            <tag> rxjava异常 </tag>
+            
+            <tag> kotlin </tag>
+            
+            <tag> 协程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>每日一问：可更改八方向的渐变色矩形如何绘制</title>
       <link href="/2021/12/31/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%97%AE%EF%BC%9A%E5%8F%AF%E6%9B%B4%E6%94%B9%E5%85%AB%E6%96%B9%E5%90%91%E7%9A%84%E6%B8%90%E5%8F%98%E8%89%B2%E7%9F%A9%E5%BD%A2%E5%A6%82%E4%BD%95%E7%BB%98%E5%88%B6/"/>
       <url>/2021/12/31/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%97%AE%EF%BC%9A%E5%8F%AF%E6%9B%B4%E6%94%B9%E5%85%AB%E6%96%B9%E5%90%91%E7%9A%84%E6%B8%90%E5%8F%98%E8%89%B2%E7%9F%A9%E5%BD%A2%E5%A6%82%E4%BD%95%E7%BB%98%E5%88%B6/</url>
