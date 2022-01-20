@@ -191,7 +191,7 @@ Observable.zip(getSource(1), getSource(2), &#123; s1, s2 -&gt; &quot;&quot;&#125
 <p>初见时应该会有人疑惑，这应该没问题啊，怎么会崩溃。</p>
 <p>先看一眼异常堆栈信息</p>
 <pre><code>java.lang.IllegalStateException: 发生异常 2
-    at cn.findpiano.piano.ui.BaseHomeActivity$onItemPressed$getSource$1$1.invokeSuspend(BaseHomeActivity.kt:868)
+    at com.example.myapp.ui.BaseHomeActivity$onItemPressed$getSource$1$1.invokeSuspend(BaseHomeActivity.kt:868)
     at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
     at kotlinx.coroutines.DispatchedTaskKt.resume(DispatchedTask.kt:234)
     at kotlinx.coroutines.DispatchedTaskKt.dispatch(DispatchedTask.kt:166)
@@ -213,7 +213,7 @@ Observable.zip(getSource(1), getSource(2), &#123; s1, s2 -&gt; &quot;&quot;&#125
 <pre><code>io.reactivex.exceptions.UndeliverableException: The exception could not be delivered to the consumer because it has already canceled/disposed the flow or the exception has nowhere to go to begin with. Further reading: https://github.com/ReactiveX/RxJava/wiki/What&#39;s-different-in-2.0#error-handling | java.lang.Throwable: 发生异常 2
     at io.reactivex.plugins.RxJavaPlugins.onError(RxJavaPlugins.java:367)
     at io.reactivex.internal.operators.single.SingleCreate$Emitter.onError(SingleCreate.java:81)
-    at cn.findpiano.piano.ui.BaseHomeActivity$onItemPressed$getSource$1$1.invokeSuspend(BaseHomeActivity.kt:868)
+    at com.example.myapp.ui.BaseHomeActivity$onItemPressed$getSource$1$1.invokeSuspend(BaseHomeActivity.kt:868)
     at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
     at kotlinx.coroutines.DispatchedTaskKt.resume(DispatchedTask.kt:234)
     at kotlinx.coroutines.DispatchedTaskKt.dispatch(DispatchedTask.kt:166)
